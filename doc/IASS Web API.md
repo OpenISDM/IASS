@@ -1,25 +1,28 @@
-IASS Web API
-=========
-
+**IASS  Web API : Version 1 **
+========
 IASS's API is a powerful, Restful style API that exposes all of IASS's core features to API clients. All of a IASS's core functionality(everything you can do with the web interface and more) can be used by external code that calls the IASS API.
 
-Version
-----
+-------
+**Version**
+-------
 
-1.0
+/IASS/v1/
 
-Resources
-----
-* Datasets
-* Categories
-* Tags
-* Notification
-* Events
-* Conditions
+-------
+**Resources**
+-------
+- Datasets
+- Categories
+- Tags
+- Notify methods
+- Notification
+- Events
+- Conditions
 
-Status codes
-------------
+-------
 
+**Status codes**
+-------
 The API is designed to return different status codes according to context and action. In this way if a request results in an error the caller is able to get insight into what went wrong, e.g. status code 400 Bad Request is returned if a required attribute is missing from the request. The following list gives an overview of how the API functions generally behave.
 
 API request types:
@@ -43,77 +46,29 @@ Return values:
 409 Conflict - A conflicting resource already exists, e.g. creating a project with a name that already exists
 500 Server Error - While handling the request something went wrong on the server side
 ```
-Format
-------
-function description
+
+-------
+
+##**Datasets**
+Description
 ```
-HTTP verb/ URL(API name/Version/plular nouns.format)?key1=value & key2=value
+A data set is a collection of data. It corresponds to the contents of a single database table, or a single statistical data matrix, where every column of the table represents a particular variable, and each row corresponds to a given member of the data set in question[6]. 
+```
+
+
+###List datasets
+List all the data sets which IASS is capable to monitor.
+```
+GET /datasets
 ```
 
 Parameters
 
-* 
-`
-key1
-`
-(required/optional) The description of this parameter; if the name is "none", there is not parameter in this function.
+- `none`
 
-Sample request
-```
-[
-    {
-        "key": "value"
-        "...": "..."
-    }
-]
-```
+Response body
 
-Sample response
-```
-{
-    "status = 200
-    "metadata": {
-        "resultset": {
-            "count": 227,
-            "offset": 25,
-            "limit": 25
-        }
-    },
-    "results": [
-        {....}
-        {....}
-        {....}
-    ]
-}
-```
-
-
-Example Data
---------
-1. Water Resources Agency, water level
-2. Central Weather Bureau, rainfall
-3. City Goveronment, water gates
-
-
-
-Datasets
------------
-List datasets
-
-```
-GET /IASS/v1/datasets
-```
-Parameters
-
-* 
-
-`
-none
-`
-
-Sample response
-
-```
+>```
 {
     "success": true
     "status": 200
@@ -126,8 +81,8 @@ Sample response
     "results": [
         {
             "id": 1,
-        	"description": null,
-        	"public": false,
+            "description": null,
+            "public": false,
         	"visibility_Level": 1,
             "encode":"BIG5"
         	"web_URL": "http://central.weather.bureau",
@@ -157,199 +112,35 @@ Sample response
         },
     ]
 }
-```
+>```
 
-Categories
------------
-List categories
 
-```
-GET /IASS/v1/catagories
-```
-Parameters
+###Specify by data ID
 
-* 
-
-`
-none
-`
-
-Sample response
-```
-{
-    "success": true
-    "status": 200
-	"last_Updated_Date": "2014-10-24T11: 48: 02Z"
-    "metadata": {
-        "organizations": {
-            "count": 3,
-            "offset": 0,
-        }
-        "disasters": {
-            "count": 5,
-            "offset": 0,
-        }
-        "tags": {
-            "count": 5,
-            "offset": 0,
-        }
-
-    },
-    "organizations":[
-        "Water Resources Agency",
-        "Central Weather Bureau",
-        "City Goveronment",
-    ]
-    "disasters":[
-        "typhoon",
-        "downpour",
-        "debris flow",
-        "earthquake",
-        "virus",
-        
-    ]
-    "tags":[
-        "climate",
-        "weather",
-        "dangerous",
-        "river",
-        "medical",
-    ]
-}
-```
-
-Tags
------------
-List tags
-
-```
-GET /IASS/v1/tags
-```
-Parameters
-
-* 
-
-`
-none
-`
-
-Sample response
-```
-{
-    "success": true
-    "status": 200
-    "last_Updated_Date": "2014-10-24T11: 48: 02Z"
-    "metadata": {
-        "resultset": {
-            "count": 5,
-            "offset": 0,
-        }
-    },
-    "result":[
-        "climate",
-        "weather",
-        "dangerous",
-        "river",
-        "medical",
-    ]
-}
-```
-
-Specify by data tags
------------
-Specify datasets by their tags, and list all datasets which have the specified tags
-```
-GET /IASS/v1/datasets/[tag]
-```
-```
-GET /IASS/v1/datasets/?tag=climate
-```
-Parameters
-
-* 
-
-`
-tag
-`
-: (required)  a string which is used describe datasets
-
-Sample response
-```
-{
-    "success": true
-    "status": 200
-    "metadata": {
-        "resultset": {
-            "count": 3,
-            "offset": 0,
-        }
-    },
-    "results": [
-        {
-            “id”: 1,
-            “description”: null,
-        	“public”: false,
-        	"visibility_Level": 1,
-        	“web_URL”: "http://central.weather.bureau",
-        	“organization”: {
-        	    "id": 1,
-        	    "name": "Central Weather Bureau",
-        	}
-            "catalogs":{
-                "organizations":[
-                    "Central Weather Bureau",
-                ]
-                "disasters":[
-                    "typhoon",
-                    "downpour",
-                    "debris flow",
-                ]
-                "tags":[
-                    "climate",
-                    "weather",
-                    "dangerous",
-                    "river",
-                ]
-            }
-        	“last_Updated_Date”: "2014-10-24T11: 48: 02Z",
-        	“update_Frequency ”: 1800,
-        	“expiration_Date”: "2014-10-24T12: 18: 02Z",
-        },
-    ]
-}
-```
-Specify by data ID
------------
 Specify a dataset by its ID, and list inner information (records) of the dataset who has the ID.
 ```
-GET /IASS/v1/datasets/[dataset_ID]
+GET /datasets/[dataset_ID]
 ```
 ```
-GET /IASS/v1/datasets/1
+GET /datasets/1
 ```
-
 
 Parameters
 
-* 
-
-`
-dataset_ID
-`
-: (required) the identify number of a dataset.
+-  `dataset_ID` : (required) the identify number of a dataset.
 
 
 Sample response
-```
+>```
 {
     "success": true,
     "status": 200,
     "encode":"BIG5"
-    "dataset_ID": 1,
+    "datasetID": 1,
     "description": null,
 	"public": false,
-	"visibility_Level": 1,
-	"web_URL": "http://central.weather.bureau",
+	"visibilityLevel": 1,
+	"webURL": "http://central.weather.bureau",
 	"organization": {
 	    "id": 1,
 	    "name": "Central Weather Bureau",
@@ -370,194 +161,291 @@ Sample response
             "river",
         ]
     }
-	"last_Updated_Date": "2014-10-24T11: 48: 02Z",
-	"update_Frequency": 1800,
-	"expiration_Date": "2014-10-24T12: 18: 02Z",
+	"lastUpdatedDate": "2014-10-24T11: 48: 02Z",
+	"updateFrequency": 1800,
+	"expirationDate": "2014-10-24T12: 18: 02Z",
     "metadata": {
-        "record_Set": {
-            "count": 3,
+        "recordSet": {
+            "count": 300,
             "offset": 0,
+            "limit":50
         }
     },
     "record":[
         {
-        "record_ID":1,
-        "vaild_period":1800,
-        "sit_Name":"吉林國小",
-        "site_ID":"wr0102",
+        "id":1,
+        "vaildPeriod":1800,
+        "sitName":"吉林國小",
+        "siteID":"wr0102",
         "county":"新北市",
         "township":"貢寮區",
         "latitude":24.9875,
         "longitude":121.8794,
-        "10_Min_Rainfall":0,
-        "1_Hour_Rainfall":0,
-        "3_Hour_Rainfall":1,        
-        "6_Hour_Rainfall":23,
-        "12_Hour_Rainfall":0,
-        "24_Hour_Rainfall":0,
-        "daily_Rainfall":23,
+        "10MinRainfall":0,
+        "1HourRainfall":0,
+        "3HourRainfall":1,        
+        "6HourRainfall":23,
+        "12HourRainfall":0,
+        "24HourRainfall":0,
+        "dailyRainfall":23,
         "unit":"第一河川局",
-        "publish_Time": "2014-10-24T11: 48: 02Z",
+        "publishTime": "2014-10-24T11: 48: 02Z",
         }
     ]
-    
-
 }
+>```
+
+
+-------
+
+##**Categories**
+Description
+```
+catagories are 
 ```
 
-Notify
--------
-List all notify methods
+###List categories
+
 ```
-GET /IASS/v1/notify_Methods
+GET /catagories
 ```
 Parameters
 
-* 
+- `none`
 
-`
-none
-`
+Sample response
+>```
+{
+    "success": true
+    "status": 200
+	"lastUpdatedDate": "2014-10-24T11: 48: 02Z"
+    "metadata": {
+        "organizations": {
+            "count": 3,
+            "offset": 0,
+        }
+        "disasters": {
+            "count": 5,
+            "offset": 0,
+        }
+        "tags": {
+            "count": 5,
+            "offset": 0,
+        }
+    },
+    "organizations":[
+        "Water Resources Agency",
+        "Central Weather Bureau",
+        "City Goveronment",
+    ]
+    "disasters":[
+        "typhoon",
+        "downpour",
+        "debris flow",
+        "earthquake",
+        "virus",
+    ]
+    "tags":[
+        "climate",
+        "weather",
+        "dangerous",
+        "river",
+        "medical",
+    ]
+}
+>```
+
+-------
+##**Tags**
+Description
+```
+Tags are 
+```
+
+###List tags
+
+```
+GET /tags
+```
+Parameters
+
+- `none`
+
+Sample response
+>```
+{
+    "success": true
+    "status": 200
+    "lastUpdatedDate": "2014-10-24T11: 48: 02Z"
+    "metadata": {
+        "resultset": {
+            "count": 5,
+            "offset": 0,
+        }
+    },
+    "result":[
+        "climate",
+        "weather",
+        "dangerous",
+        "river",
+        "medical",
+    ]
+}
+>```
+
+###Specify by data tags
+Specify datasets by their tags, and list all datasets which have the specified tags
+```
+GET /datasets/[tag]
+```
+```
+GET /datasets/?tag=climate,weather
+```
+
+Parameters
+
+- `tag`: (required)  a string array which is used describe datasets
+
+Sample response
+>```
+{
+    "success": true
+    "status": 200
+    "metadata": {
+        "resultSet": {
+            "count": 3,
+            "offset": 0,
+        }
+    },
+    "results": [
+        {
+            "id": 1,
+            "description": null,
+        	"public": false,
+        	"visibilityLevel": 1,
+        	"webURL": "http://central.weather.bureau",
+        	"organization": {
+        	    "id": 1,
+        	    "name": "Central Weather Bureau",
+        	}
+            "catalogs":{
+                "organizations":[
+                    "Central Weather Bureau",
+                ]
+                "disasters":[
+                    "typhoon",
+                    "downpour",
+                    "debris flow",
+                ]
+                "tags":[
+                    "climate",
+                    "weather",
+                    "dangerous",
+                    "river",
+                ]
+            }
+        	"lastUpdatedDate":  "2014-10-24T11: 48: 02Z",
+        	"updateFrequency": 1800,
+        	"expirationDate": "2014-10-24T12: 18: 02Z",
+        },
+    ]
+}
+>```
+
+-------
+##**Notify methods**
+
+Description
+```
+Notify methods are 
+```
+
+###List all notify methods
+```
+GET /notify_Methods
+```
+Parameters
+
+* `none`
 
 Request body
-```
+
+>```
 {
     "success": true,
     "status": 200,
-    "user_ID":1,
-	"last_Updated_Date": "2014-10-24T11: 48: 02Z",
+    "userID":1,
+	"lastUpdatedDate": "2014-10-24T11: 48: 02Z",
     "metadata": {
-        "method_Set": {
+        "methodSet": {
             "count": 2,
             "offset": 0,
         }
     },
     "method":[
         {
-        "method_ID":1,
+        "id":1,
         "description":"Push information to assigned URL."
-        "needed_Info":"This notify method needs a specific URL and the reciver's name."
-        "address_Format":"http://xxxx.xxxx.xxxx"
+        "neededInfo":"This notify method needs a specific URL and the reciver's name."
+        "addressFormat":"http://xxxx.xxxx.xxxx"
         }
         {
-        "method_ID":2,
+        "id":2,
         "description":"send an email to an App. messages will follow the CAP format"
-        "needed_Info":"This notify method needs a specific email address and the reciver's name."
-        "address_Format":"XXXX@yyyyyyyyyyy"
+        "neededInfo":"This notify method needs a specific email address and the reciver's name."
+        "addressFormat":"XXXX@yyyyyyyyyyy"
         }
-
     ]
 }
+>```
+
+----------
+
+##**Notification**
+
+Description
+```
+conditions are 
 ```
 
-
-Request a event
--------
-Specidy the monitor event information.
+###Specidy the notify information.
 
 ```
-POST /IASS/v1/datasets/[dataset_ID]/[record_ID]/key & event_Operator & event_Value
-```
-```
-POST /IASS/v1/datasets/1/1/key=daily_Rainfall & operator=> & value=100
+POST /notify
 ```
 Parameters
 
-* 
-
-`
-dataset_ID
-`
-: (required)  the identify number of a dataset.
-
-* 
-`
-record_ID
-`
-: (required) the identify number of a record in a specific dataset.
-
-* 
-`
-key_Name
-`
-: (required) the key of a variable which application developer wants to monitor.
-
-* 
-`
-event_Operator
-`
-: (required) a mathmetic operator, which represents the relationship between monitored value and its condition. Here, we offer 1. larger than ">",  2. smaler than "<", and equal to "="
-
-* 
-`
-event_Value
-`
-: (required) a value is used as the condition value.
+- `none`
 
 Request body
 ```
 [
     {
-        "user_ID":1,
-        "dataset_ID":1,
-        "record_ID":1,
-        "key_Name":"daily_Rainfall",
-        "event_Operator":">",
-        "event_Value":100,
-    }
-]
-```
-Notify information
--------
-Specidy the notify information.
-
-```
-POST /IASS/v1/notify
-```
-Parameters
-
-* 
-
-`
-none
-`
-
-Request body
-```
-[
-    {
-        "user_ID":1,
-        "notify_Method"=1,
-        "reciver_Name":"App in Taipei pumping station",
-        "App_URL":"http://140.114.xx.xx/asdf1234",
-        "mail_Address":"",
-        "phone_number":"",
+        "userID":1,
+        "notifyMethod"=1,
+        "reciverName":"App in Taipei pumping station",
+        "AppURL":"http://140.114.xx.xx/asdf1234",
+        "mailAddress":"",
+        "phoneNumber":"",
     }
 ]
 ```
 
-
-Notification list
--------
-List all notification-reciver information which are registerd by the current user.
+###List all notification-reciver information which are registerd by the current user.
 ```
-GET /IASS/v1/notifications
+GET /notifications
 ```
 Parameters
 
-* 
-
-`
-none
-`
+- `none`
 
 Request body
-```
+>```
 {
     "success": true,
     "status": 200,
-    "user_ID":1,
-	"last_Updated_Date": "2014-10-24T11: 48: 02Z",
+    "userID":1,
+	"lastUpdatedDate": "2014-10-24T11: 48: 02Z",
     "metadata": {
         "reciver_Set": {
             "count": 3,
@@ -567,22 +455,121 @@ Request body
     "reciver":[
         {
         "id"=1,
-        "notify_Method"=1,
-        "reciver_Name":"App in Taipei pumping station",
-        "App_URL":"http://140.114.xx.xx/asdf1234",
-        "mail_Address":"",
-        "phone_number":"",
+        "notifyMethod"=1,
+        "reciverName":"App in Taipei pumping station",
+        "AppURL":"http://140.114.xx.xx/asdf1234",
+        "mailAddress":"",
+        "phoneNumber":"",
         }
         {
         "id":2,
-        "notify_Method"=2,
-        "reciver_Name":"App in Taipei pumping station",
-        "App_URL":"",
-        "mail_Address":"taipei@pumping.com",
-        "phone_number":"",
+        "notifyMethod"=2,
+        "reciverName":"App in Taipei pumping station",
+        "AppURL":"",
+        "mailAddress":"taipei@pumping.com",
+        "phoneNumber":"",
         }
-
     ]
 }
+>```
+
+
+----------
+
+##**Events**
+
+Description
+```
+conditions are 
 ```
 
+###Request a event
+Specify the monitor event information.
+
+```
+POST /datasets/[dataset_ID]/[record_ID]/?key&event_Operator& event_Value
+```
+```
+POST /datasets/1/1/key=daily_Rainfall & operator=> & value=100
+```
+Parameters
+
+-  `dataset_ID`: (required)  the identify number of a dataset.
+
+- `record_ID`: (required) the identify number of a record in a specific dataset.
+
+- `key_Name`: (required) the key of a variable which application developer wants to monitor.
+
+- `event_Operator`: (required) a mathmetic operator, which represents the relationship between monitored value and its condition. Here, we offer 1. larger than ">",  2. smaler than "<", and equal to "="
+
+- `event_Value`: (required) a value is used as the condition value.
+
+Request body
+>```
+[
+    {
+        "userID":1,
+        "datasetID":1,
+        "recordID":1,
+        "keyName":"daily_Rainfall",
+        "eventOperator":">",
+        "eventValue":100,
+    }
+]
+>```
+
+------------
+##**Conditions**
+Description
+```
+conditions are 
+```
+
+###Specify in which condition receivers should be notified.
+
+```
+POST /condition
+```
+```
+POST /condition/?[event]&[notification]
+```
+```
+POST /condition/?event=1,2&notification=1,2
+```
+
+Parameters
+
+- `none`
+
+Request body
+>```
+[
+    {
+        "userID":1,
+        "events":[
+            {"id":1,},
+            {"id":2,},
+        ]
+        "notifications":[
+	        {"id":1,},
+	        {"id":2,},
+        ]
+    }
+]
+>```
+
+------
+
+**Reference**
+-----
+[1] key's name inside Json. http://stackoverflow.com/questions/5543490/json-naming-convention
+
+[2] web API standards. https://github.com/WhiteHouse/api-standards#http-verbs
+
+[3] Ckan 2.2 documentation. http://docs.ckan.org/en/ckan-2.2/api.
+
+[4] Error handling. https://developers.google.com/maps/documentation/directions/#ErrorMessages
+
+[5] Using REST. https://cloud.google.com/translate/v2/using_rest?hl=zh-TW
+
+[6] Definition of data set. http://en.wikipedia.org/wiki/Data_set
