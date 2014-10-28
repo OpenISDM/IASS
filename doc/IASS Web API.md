@@ -11,7 +11,7 @@ IASS's API is a powerful, Restful style API that exposes all of IASS's core feat
 -------
 **Resources**
 -------
-- Datasets
+- Data sets
 - Categories
 - Tags
 - Notify methods
@@ -49,15 +49,15 @@ Return values:
 
 -------
 
-##**Datasets**
+##**Data sets**
 Description:
 
 A data set is a collection of data. It corresponds to the contents of a single database table, or a single statistical data matrix, where every column of the table represents a particular variable, and each row corresponds to a given member of the data set in question[6]. 
 
 
 
-###List datasets
-List all the data sets which IASS is capable to monitor.
+###List data sets
+This function will return a list of data sets which IASS is capable to monitor.
 ```
 GET /datasets
 ```
@@ -73,7 +73,7 @@ Response body
     "success": true
     "status": 200
     "metadata": {
-        "resultset": {
+        "resultSet": {
             "count": 3,
             "offset": 0,
         }
@@ -85,7 +85,7 @@ Response body
             "public": false,
         	"visibility_Level": 1,
             "encode":"BIG5"
-        	"web_URL": "http://central.weather.bureau",
+        	"webURL": "http://central.weather.bureau",
         	"organization": {
         	    "id": 1,
         	    "name": "Central Weather Bureau",
@@ -106,28 +106,29 @@ Response body
                     "river",
                 ]
             }
-        	"last_Updated_Date": "2014-10-24T11: 48: 02Z",
-        	"update_Frequency": 1800,
-        	"expiration_Date": "2014-10-24T12: 18: 02Z",
+        	"lastUpdatedDate": "2014-10-24T11: 48: 02Z",
+        	"updateFrequency": 1800,
+        	"expirationDate": "2014-10-24T12: 18: 02Z",
         },
     ]
 }
 >```
 
 
-###Specify by data ID
+###Specify by data set ID
 
-Specify a dataset by its ID, and list inner information (records) of the dataset who has the ID.
+This function will return the data set which own the assigned id, and will list the data set's inner information (records).
 ```
-GET /datasets/[dataset_ID]
+GET /datasets/datasetId
 ```
+After executing the following command, IASS will return information about the data set whose identity number is 1.
 ```
 GET /datasets/1
 ```
 
 Parameters
 
--  `dataset_ID` : (required) the identify number of a dataset.
+-  `datasetId` : (required) the identity number of a data set.
 
 
 Sample response
@@ -136,7 +137,7 @@ Sample response
     "success": true,
     "status": 200,
     "encode":"BIG5"
-    "datasetID": 1,
+    "datasetId": 1,
     "description": null,
 	"public": false,
 	"visibilityLevel": 1,
@@ -165,13 +166,13 @@ Sample response
 	"updateFrequency": 1800,
 	"expirationDate": "2014-10-24T12: 18: 02Z",
     "metadata": {
-        "recordSet": {
+        "resultSet": {
             "count": 300,
             "offset": 0,
             "limit":50
         }
     },
-    "record":[
+    "result":[
         {
         "id":1,
         "vaildPeriod":1800,
@@ -200,14 +201,13 @@ Sample response
 
 ##**Categories**
 Description
-```
-catagories are 
-```
+
+Categories offer a way to describe data set by using several word sets. It composed by several word sets : organizations, disasters, tags and locations.
 
 ###List categories
-
+This function will return a list of word sets which are used to describe data sets.
 ```
-GET /catagories
+GET /categories
 ```
 Parameters
 
@@ -232,6 +232,10 @@ Sample response
             "count": 5,
             "offset": 0,
         }
+        "locations": {
+            "count": 2,
+            "offset": 0,
+        }    
     },
     "organizations":[
         "Water Resources Agency",
@@ -252,18 +256,22 @@ Sample response
         "river",
         "medical",
     ]
+    "locations":[
+	    "Taipei",
+	    "TaiNan"
+    ]
 }
 >```
 
 -------
 ##**Tags**
 Description
-```
-Tags are 
-```
+
+Tags are some freely defined words which can describe a data sets more accurately; They help users to shorten the returned data sets list.
+
 
 ###List tags
-
+This function will return a list of words which are used to describe data sets. The result provides references that application developers can specify the needed data sets.  
 ```
 GET /tags
 ```
@@ -278,7 +286,7 @@ Sample response
     "status": 200
     "lastUpdatedDate": "2014-10-24T11: 48: 02Z"
     "metadata": {
-        "resultset": {
+        "resultSet": {
             "count": 5,
             "offset": 0,
         }
@@ -294,17 +302,18 @@ Sample response
 >```
 
 ###Specify by data tags
-Specify datasets by their tags, and list all datasets which have the specified tags
+Specify data sets by their tags, and list all data sets which have the specified tags.
 ```
 GET /datasets/[tag]
 ```
+After executing the following command, IASS will return information about the data set which have tags "climate" and "weather".
 ```
 GET /datasets/?tag=climate,weather
 ```
 
 Parameters
 
-- `tag`: (required)  a string array which is used describe datasets
+- `[tag]`: (required)  a string array which is used describe data sets.
 
 Sample response
 >```
@@ -356,13 +365,13 @@ Sample response
 ##**Notify methods**
 
 Description
-```
-Notify methods are 
-```
+
+The notify methods are the possible ways to notify receivers which supported by IASS.
 
 ###List all notify methods
+This function will return a list of all possible notify ways.
 ```
-GET /notify_Methods
+GET /notifyMethods
 ```
 Parameters
 
@@ -377,16 +386,16 @@ Request body
     "userID":1,
 	"lastUpdatedDate": "2014-10-24T11: 48: 02Z",
     "metadata": {
-        "methodSet": {
+        "resultSet": {
             "count": 2,
             "offset": 0,
         }
     },
-    "method":[
+    "result":[
         {
         "id":1,
         "description":"Push information to assigned URL."
-        "neededInfo":"This notify method needs a specific URL and the reciver's name."
+        "neededInfo":"This notify method needs a specific URL and the receiver's name."
         "addressFormat":"http://xxxx.xxxx.xxxx"
         }
         {
@@ -403,19 +412,21 @@ Request body
 
 ##**Notification**
 
-Description
-```
-conditions are 
-```
+A notification is composed by following information: receiver information such as name and app URL, a chosen notify method and who want this message be sent.
 
-###Specidy the notify information.
+###Specify the notify information.
 
+Application developers (users) can specify receivers' information and notify ways through this function.
 ```
-POST /notify
+POST /notification
 ```
 Parameters
 
-- `none`
+- `userID`: (required) the identity number of a person ( or an application) who wants this message be sent.
+-  `notifyMethod`: (required) this parameter assigned the way how to notify the receiver.
+- `receiverName`:(required) it is whom the user want to notify, when some particular conditions happen.
+- `appURL`:(optional) only when the notify method is assigned to Push (which is 1.), this parameter should be filled.  
+- `mailAddress`:(optional) only when the notify method is assigned to email (which is 2.), this parameter should be filled.
 
 Request body
 ```
@@ -424,16 +435,16 @@ Request body
         "userID":1,
         "notifyMethod"=1,
         "reciverName":"App in Taipei pumping station",
-        "AppURL":"http://140.114.xx.xx/asdf1234",
+        "appURL":"http://140.114.xx.xx/asdf1234",
         "mailAddress":"",
-        "phoneNumber":"",
     }
 ]
 ```
 
-###List all notification-reciver information which are registerd by the current user.
+###List all notification-receiver information.
+This function will return a list of all the notification receivers and their information.
 ```
-GET /notifications
+GET /notificationReceivers
 ```
 Parameters
 
