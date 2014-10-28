@@ -50,10 +50,10 @@ Return values:
 -------
 
 ##**Datasets**
-Description
-```
+Description:
+
 A data set is a collection of data. It corresponds to the contents of a single database table, or a single statistical data matrix, where every column of the table represents a particular variable, and each row corresponds to a given member of the data set in question[6]. 
-```
+
 
 
 ###List datasets
