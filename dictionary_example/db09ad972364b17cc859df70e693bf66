@@ -1,0 +1,16 @@
+{
+  "dataset_name": "Planned road works on the HA road network - 2011 10",
+  "uuid": "db09ad972364b17cc859df70e693bf66",
+  "valid_time": "null",
+  "access_path": "http://data.highways.gov.uk/ha-roadworks/ha-roadworks_2011_10_10.xml",
+  "field": "null",
+  "encoding": "UTF-8",
+  "frequency": "weekly",
+  "format": "XML",
+  "last_update": "2011-10-24",
+  "open_data_portal": "UK",
+  "open_data_portal_URL": "http://data.gov.uk/",
+  "API_type": "CKAN",
+  "script_path": "file://.../.../...",
+  "metadata": "http://data.gov.uk/api/2/rest/package/highways_agency_planned_roadworks"
+}

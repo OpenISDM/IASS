@@ -1,0 +1,16 @@
+{
+  "dataset_name": "臺北市垃圾清運點位資訊",
+  "uuid": "282ae8af10baac6e2e8ca8a6f9fb1e96",
+  "valid_time": "null",
+  "access_path": "http://data.taipei.gov.tw/opendata/apply/query/MTQ2ODU5NjMtREQxNS00MTczLUE4NDktOTlCNEI0MzZDQjcy?$format=json",
+  "field": "發布單位、名稱、內容、經度、緯度、更新時間",
+  "encoding": "UTF-8",
+  "frequency": "每天",
+  "format": "JSON",
+  "last_update": "2015/02/25",
+  "open_data_portal": "Taipei",
+  "open_data_portal_URL": "http://data.taipei.gov.tw/opendata",
+  "API_type": "Custom",
+  "script_path": "file://.../.../...",
+  "metadata": "http://data.taipei.gov.tw/opendata/apply/NewDataContent?oid=14685963-DD15-4173-A849-99B4B436CB72#"
+}
