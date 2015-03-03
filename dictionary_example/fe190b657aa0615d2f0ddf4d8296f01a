@@ -17,61 +17,79 @@
     "field_name": "Race",
     "name_set": [
       {
-        "count": 20,
+        "count": 7,
         "item": "African-American"
       },
       {
-        "count": 19,
+        "count": 6,
         "item": "Asian-American"
       },
       {
-        "count": 18,
+        "count": 5,
         "item": "Blank or Declined to State"
       },
       {
-        "count": 17,
+        "count": 4,
         "item": "Caucasian/White"
       },
       {
-        "count": 16,
+        "count": 3,
         "item": "Latino/a/Hispanic"
       },
       {
-        "count": 15,
+        "count": 2,
         "item": "Native American/Pacific Islander"
       },
       {
-        "count": 14,
+        "count": 1,
         "item": "Other"
       }
     ]
   },
-  "range of fileds": {
-    "2004": {
-      "lower_bound": "0.83",
-      "upper_bound": "33.96"
+  "range of fileds":[ 
+    {
+      "name":"2004",
+      "bound":{
+        "lower": "0.83",
+        "upper": "33.96"
+      }
     },
-    "2005": {
-      "lower_bound": "0.85",
-      "upper_bound": "30.43"
+    {
+      "name":"2005",
+      "bound":{
+        "lower": "0.85",
+        "upper": "30.43"
+      }
     },
-    "2006": {
-      "lower_bound": "1.39",
-      "upper_bound": "33.76"
+    {
+      "name":"2006",
+      "bound":{
+        "lower": "1.39",
+        "upper": "33.76"
+      }
     },
-    "2007": {
-      "lower_bound": "1.09",
-      "upper_bound": "28.40"
+    {
+      "name":"2007",
+      "bound":{
+        "lower": "1.09",
+        "upper": "28.40"
+      }
     },
-    "2008": {
-      "lower_bound": "1.84",
-      "upper_bound": "27.99"
+    {
+      "name":"2008",
+      "bound":{
+        "lower": "1.84",
+        "upper": "27.99"
+      }
     },
-    "2009": {
-      "lower_bound": "1.56",
-      "upper_bound": "32.30"
+    {
+      "name":"2009",
+      "bound":{
+        "lower": "1.56",
+        "upper": "32.30"
+      }
     }
-  },
+  ],  
   "maintainer": "Johnson Su",
   "maintainer's_phone_number": "1478"
 }
