@@ -1,0 +1,2 @@
+C:\Users\Rimi\Dropbox\Coding\C#\Dictionary\Dictionary\bin\Debug\Dictionary.exe.config
+D:\Dropbox\Coding\C#\Dictionary\Dictionary\bin\Debug\Dictionary.exe.config
