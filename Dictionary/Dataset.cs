@@ -78,6 +78,14 @@ namespace Dictionary
          */
 
         protected Dictionary<String, List<MonitoredField>> monitoredList;
+        
+        /*
+         * This dataset can be fetched by which portal API
+         */
+         
+         private String API_Type;
+         
+         //TODO: add fetch method, to get dataset.
 
 
 
