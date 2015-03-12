@@ -44,8 +44,11 @@
     <Compile Include="Condition.cs" />
     <Compile Include="ConditionList.cs" />
     <Compile Include="Dataset.cs" />
+    <Compile Include="DatasetDictionary.cs" />
     <Compile Include="DataValue.cs" />
+    <Compile Include="MonitoredField.cs" />
     <Compile Include="MonitoredListWithKey.cs" />
+    <Compile Include="MonitorListDictionary.cs" />
     <Compile Include="NotificationList.cs" />
     <Compile Include="NotifyWay.cs" />
     <Compile Include="Program.cs" />
@@ -55,6 +58,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="testSets\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -18,9 +18,15 @@ namespace Dictionary
          */
 
         //Property
-        private abstract Boolean notifySuccess;
-        private abstract String way;
+        
+        //Is the notification successfully delivered?
+        //private abstract Boolean notifySuccess;
+        //Which way will be implemented? 
+        //private abstract String way;
+
         //Method
+        
+        //When triggered, execute notification
         public abstract Boolean executeNotify(Object nofityParameters);
     }
     class NotificationSelection
@@ -32,16 +38,19 @@ namespace Dictionary
         {
             if (way == "PUSH")
             {
+                // When PUSH is chosen
                 usedWay = new NotifyByPUSH();
             }
             else if (way == "SIGNAL")
             {
+                // When SENDING SIGNAL is chosen
                 usedWay = new NotifyBySIGNAL();
             }
             else
             {
+                // The chosen way may be wrong or has not be supported yet
                 usedWay = null;
-                Console.WriteLine("No such notification way!");
+
             }
         }
 
@@ -51,9 +60,15 @@ namespace Dictionary
     {
         
         //Overriding property
-        private override Boolean notifySuccess = false;
-        private override String way = "PUSH";
+        private Boolean notifySuccess = false;
+        private String way = "PUSH";
 
+        //Constructor
+        public NotifyByPUSH()
+        {
+            //Debug information
+            Console.WriteLine("An Object NotifyByPUSH was created");
+        }
 
         //Overriding method
         public override Boolean executeNotify(object nofityParameters)
@@ -70,9 +85,15 @@ namespace Dictionary
     {
 
         //Overriding property
-        private override Boolean notifySuccess = false;
-        private override String way = "SIGNAL";
+        private Boolean notifySuccess = false;
+        private String way = "SIGNAL";
 
+        //Constructor
+        public NotifyBySIGNAL()
+        {
+            //Debug information
+            Console.WriteLine("An Object NotifyBySIGNAL was created");
+        }
         //Overriding method
         public override Boolean executeNotify(object nofityParameters)
         {

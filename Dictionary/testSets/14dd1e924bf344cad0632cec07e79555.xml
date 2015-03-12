@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Root>
+	<dataset_name>UK_Office of Citizen Complaints Complainants by Race/Ethnicity - 2004-9</dataset_name>
+	<uuid>14dd1e924bf344cad0632cec07e79555</uuid>
+	<valid_time>null</valid_time>
+	<frequency>mounthly</frequency>
+	<last_update>2011-10-24</last_update>
+	<access_path>https://data.sfgov.org/api/views/zpxx-ap9z/rows.json</access_path>
+	<encoding>UTF-8</encoding>
+	<format>JSON</format>
+	<metadata>https://data.sfgov.org/api/views/zpxx-ap9z/rows.json</metadata>
+	<open_data_portal>DataSF</open_data_portal>
+	<open_data_portal_URL>https://data.sfgov.org/</open_data_portal_URL>
+	<API_type>Socrata Open Data API (SODA)</API_type>
+	<script_path>file://.../.../...</script_path>
+	<fields>Race, 2004, 2005, 2006, 2007, 2007, 2008, 2009</fields>
+	<key_field>
+		<field_name>Race</field_name>
+		<name_set>
+			<count>7</count>
+			<item>African-American</item>
+		</name_set>
+		<name_set>
+			<count>6</count>
+			<item>Asian-American</item>
+		</name_set>
+		<name_set>
+			<count>5</count>
+			<item>Blank or Declined to State</item>
+		</name_set>
+		<name_set>
+			<count>4</count>
+			<item>Caucasian/White</item>
+		</name_set>
+		<name_set>
+			<count>3</count>
+			<item>Latino/a/Hispanic</item>
+		</name_set>
+		<name_set>
+			<count>2</count>
+			<item>Native American/Pacific Islander</item>
+		</name_set>
+		<name_set>
+			<count>1</count>
+			<item>Other</item>
+		</name_set>
+	</key_field>
+	<range_of_fields>
+		<name>2004</name>
+		<bound>
+			<lower>0.83</lower>
+			<upper>33.96</upper>
+		</bound>
+	</range_of_fields>
+	<range_of_fields>
+		<name>2005</name>
+		<bound>
+			<lower>0.85</lower>
+			<upper>30.43</upper>
+		</bound>
+	</range_of_fields>
+	<range_of_fields>
+		<name>2006</name>
+		<bound>
+			<lower>1.39</lower>
+			<upper>33.76</upper>
+		</bound>
+	</range_of_fields>
+	<range_of_fields>
+		<name>2007</name>
+		<bound>
+			<lower>1.09</lower>
+			<upper>28.40</upper>
+		</bound>
+	</range_of_fields>
+	<range_of_fields>
+		<name>2008</name>
+		<bound>
+			<lower>1.84</lower>
+			<upper>27.99</upper>
+		</bound>
+	</range_of_fields>
+	<range_of_fields>
+		<name>2009</name>
+		<bound>
+			<lower>1.56</lower>
+			<upper>32.30</upper>
+		</bound>
+	</range_of_fields>
+	<maintainer>Johnson Su</maintainer>
+	<maintainer_phone_number>1478</maintainer_phone_number>
+</Root>	

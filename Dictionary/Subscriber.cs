@@ -23,8 +23,12 @@ namespace Dictionary
         //Constructor
         public Subscriber(String nameOfNotifyWay)
         {
+            //Debug information
+            Console.WriteLine("An Object Subscriber was created with type ={0}",nameOfNotifyWay);
+            
             /*
-             * Pass 
+             * Pass the assigned notification way by name (String type)
+             * to get corresponding class of notify way
              */
             this.nameOfNotifyWay = nameOfNotifyWay;
             notification = new NotificationSelection(nameOfNotifyWay);
