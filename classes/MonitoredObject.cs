@@ -34,9 +34,9 @@ namespace x3
 		}
 
 		//check all update all monitor condition result in _monitorConditions list 
-		public void CheckMonitoredCondition(){
+		public void UpdateMonitoredCondition(){
 			for (int i = 0; i < _monitoredConditions.Count; i++) {
-				_monitoredConditions [i].CheckMonitoredExpression(_monitoredObjectID, _currentValue);
+//				_monitoredConditions [i].CheckMonitoredExpression(_monitoredObjectID, _currentValue);
 			}
 		}
 

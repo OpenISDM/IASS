@@ -11,19 +11,19 @@ namespace x3
 		
 		bool _monitoredConditionResult;  
 		List<MonitoredExpression> _monitoredExpressions = new List<MonitoredExpression>(); 		//stores all the monitor expression
-		Expression _monitorConditionLogic;
+		Expression _monitoredConditionLogic;
 
 		public MonitoredCondition(List<MonitoredExpression> monitoredExpressions, Expression monitorConditionLogic){		//constructor 
 			_monitoredExpressions = monitoredExpressions;    //a list of monitoredExpressions
-			_monitorConditionLogic = monitorConditionLogic;
+			_monitoredConditionLogic = monitorConditionLogic;
 			_monitoredConditionResult = false;
 
 		}
 
-		public void CheckMonitoredExpression(int monitoredObjectID, int currentValue){ 	//check the expression results when MO is updated
+		public void UpdateMonitoredExpression(int monitoredObjectID, int currentValue){ 	//check the expression results when MO is updated
 			for(int i = 0; i < _monitoredExpressions.Count; i++){ 
 				if(_monitoredExpressions[i]._monitoredObjectID == monitoredObjectID){
-					_monitoredExpressions[i].checkMonitoredExpression(currentValue);
+//					_monitoredExpressions[i].checkMonitoredExpression(currentValue);
 				}
 			}
 		}
