@@ -89,7 +89,7 @@ namespace IASS_Test
             }
 
 
-            //If the program is going to exit
+            //If the prrgram is going to exit
             //wait other threads terminate
             requestListenerThread.Join();
             requestHandlerThread.Join();

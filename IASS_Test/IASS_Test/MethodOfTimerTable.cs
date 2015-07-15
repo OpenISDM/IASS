@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace IASS_Test
 {
-    class Notification
+    class MethodOfTimerTable
     {
-        string notificaitonID;
-        string notificationType;
-        string pointerToNotificationList;
-        
     }
 }
