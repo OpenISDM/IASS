@@ -20,7 +20,7 @@ namespace x3
 			_expression = expression;		//expression will be passed in already formatted
 		}
 			
-		public void checkMonitoredExpression(int currentValue){
+		public void UpdateMonitoredExpression(int currentValue){
 			//sample
 //			_monitoredExpressionResult = _expression(currentValue); 
 		}
