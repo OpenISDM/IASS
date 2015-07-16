@@ -29,6 +29,8 @@ namespace IASS_Test
         public string GenerateRequestID()
         {
             string requestUniquID ="";
+            //version 1 :7/16, test code
+            requestUniquID = _MCstring + "_"+DateTime.Now.ToString();
             return requestUniquID;
         }
         public void SetPointerTOMC(string pointerToMC)

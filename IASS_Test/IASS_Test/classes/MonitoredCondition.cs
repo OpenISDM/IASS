@@ -9,7 +9,7 @@ namespace IASS_Test
 {
     class MonitoredCondition
     {
-        string MCID;
+        string _MCID;
         List<MonitoredObject> _MOList;
         bool _monitoredConditionResult;
 
@@ -23,13 +23,12 @@ namespace IASS_Test
             _monitoredExpressions = monitoredExpressions;    //a list of monitoredExpressions
             _monitoredConditionLogic = monitorConditionLogic;
             _monitoredConditionResult = false;
-
         }
 
         //Get Methods
         public string GetMCID()
         {
-            return MCID;
+            return _MCID;
         }
         public List<MonitoredObject> GetMOList()
         {
@@ -51,6 +50,11 @@ namespace IASS_Test
         { 	//eval all expressions in MC as a group
             //sample
             //_monitoredConditionResult = _monitorConditionLogic(_monitoredExpressions[0], _monitoredExpressions[1]) 
+        }
+        public void SetMCID(string requestID)
+        {
+            //7/16 version1: test code
+            _MCID = requestID + "***";
         }
     }
 }
