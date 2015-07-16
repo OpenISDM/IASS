@@ -18,16 +18,40 @@ namespace IASS_Test
 
         public Scheduler(EventWaitHandle doneSignal)
         {
+            //@@@@@Debug message:
+            //Console.WriteLine("This is Scheduler.cs: request handler is constructed.");
+
             this._doneSignal = doneSignal;
         }
 
         //main mehtod of this class (for threading)
         public void MainMethod()
         {
+
+            //@@@@@Debug message:
+            //Console.WriteLine("This is Scheduler.cs: scheduler thread started.");
+
+            //@@@@@Debug message:
+            //Console.WriteLine("This is Scheduler.cs: start initialization.");
+            //initilization
+            // when initialization finished, set doneEvent
+            //@@@@@Debug message:
+            //Console.WriteLine("This is Scheduler.cs: set doneEvent[2] to say initialization finished.");
+
+            _doneSignal.Set();
+            Thread.Sleep(1000);
+            _doneSignal.WaitOne();
+
+
                         
+            
+
             //while the program is not terminated
             while (!Program.isProgramExit)
             {
+                //@@@@@Debug message:
+                //Console.WriteLine("This is scheduler.cs: while the program is not terminated.");
+/*
                 // Read next update time table, and compute the next wake up time.
                 _currentTime = DateTime.Now;
                 _currentTimeInSecond = transformToTimeStamp(_currentTime);
@@ -67,7 +91,11 @@ namespace IASS_Test
                     //Update timer table and sort by next update time.
                 }
 
+*/
             }
+
+            //@@@@@Debug message:
+            //Console.WriteLine("This is scheduler.cs: scheduler thread terminated.");
         }
         public int ReadTimerTable()
         {
