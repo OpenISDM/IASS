@@ -4,19 +4,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IASS_Test
+namespace parsing_test
 {
-    class MonitoredObject
+    public class MonitoredObject
     {
-        private int _currentValue;
-        private int _validTime;
-        private int _lastUpdateTime;
-        private int _nextUpdateTime;
-        private int _updateTimeInterval;
-        private int _ShortestResponseTime;
-        private int _monitoredObjectID;
+        public int _currentValue;
+		public int _validTime;
+		public int _lastUpdateTime;
+		public int _nextUpdateTime;
+		public int _updateTimeInterval;
+		public int _ShortestResponseTime;
+		public string _monitoredObjectID;
 
         List<MonitoredCondition> _monitoredConditions = new List<MonitoredCondition>();
+
+		public MonitoredObject(string monitoredObjectID)
+		{
+			_monitoredObjectID = monitoredObjectID;
+		
+		}
+
+		public void SetCurrentValue(int currentValue){
+			_currentValue = currentValue;
+
+		}
+
 
 
         public int AccessPath()
@@ -37,8 +49,13 @@ namespace IASS_Test
         {
             for (int i = 0; i < _monitoredConditions.Count; i++)
             {
-                //				_monitoredConditions [i].CheckMonitoredExpression(_monitoredObjectID, _currentValue);
+				_monitoredConditions [i].EvaluateMCExpression;
             }
         }
+
+
     }
+
 }
+
+
