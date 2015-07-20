@@ -1,31 +1,37 @@
-﻿
-
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Linq.Expressions;
 
-namespace x3
+namespace IASS_Test
 {
-	public class MonitoredExpression 	//one monitor expression  ex: water>5
-	{
-		public int _monitoredObjectID;
-		int _currExpressionValue;
-		bool _monitoredExpressionResult;
-		Expression _expression;		//can use del if expression doesn't work
-		//ex: Expression<Func<int, bool>> expr = num => num < 5;
+    class MonitoredExpression //one monitor expression  ex: water>5
+    {
+        public int _monitoredObjectID;
+        int _currExpressionValue;
+        bool _monitoredExpressionResult;
 
+        //**can use del if expression doesn't work
+        //ex: Expression<Func<int, bool>> expr = num => num < 5;
+        Expression _expression;		
+        
 
-		public MonitoredExpression(int MonitoredObjectID, int currExpressionValue, Expression expression){		//constructor
-			_monitoredObjectID = MonitoredObjectID;
-			_currExpressionValue = currExpressionValue;
-			_expression = expression;		//expression will be passed in already formatted
-		}
-			
-		public void UpdateMonitoredExpression(int currentValue){
-			//sample
-//			_monitoredExpressionResult = _expression(currentValue); 
-		}
+        public MonitoredExpression(int MonitoredObjectID, int currExpressionValue, Expression expression)
+        {	
+            //constructor
+            this._monitoredObjectID = MonitoredObjectID;
+            this._currExpressionValue = currExpressionValue;
 
-	}
+            //expression will be passed in already formatted
+            this._expression = expression;		
+        }
 
+        public void UpdateMonitoredExpression(int currentValue)
+        {
+            //sample
+            //_monitoredExpressionResult = _expression(currentValue); 
+        }
+    }
 }
-
