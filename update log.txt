@@ -1,2 +1,2 @@
-7/16 finished most of threading codes.
-7/24 prepare to finish scheduling part.
+7/16 finished most of threading codes
+7/24 prepare to finish scheduling part
