@@ -9,19 +9,19 @@ namespace IASS_Test
 {
     class Scheduler
     {
-        EventWaitHandle _doneSignal;
-        EventWaitHandle _waitProcessRequest;
-        DateTime _currentTime;
-        int _currentTimeInSecond = 0;
-        int _nextWakeUpTimeInSecond = 0;
-        int _sleepTimeInSecond = 0;
+        EventWaitHandle doneSignal;
+
+        DateTime currentTime;
+        int currentTimeInSecond = 0;
+        int nextWakeUpTimeInSecond = 0;
+        int sleepTimeInSecond = 0;
 
         public Scheduler(EventWaitHandle doneSignal)
         {
             //@@@@@Debug message:
             //Console.WriteLine("This is Scheduler.cs: request handler is constructed.");
 
-            this._doneSignal = doneSignal;
+            this.doneSignal = doneSignal;
         }
 
         //main mehtod of this class (for threading)
@@ -38,9 +38,9 @@ namespace IASS_Test
             //@@@@@Debug message:
             //Console.WriteLine("This is Scheduler.cs: set doneEvent[2] to say initialization finished.");
 
-            _doneSignal.Set();
+            doneSignal.Set();
             Thread.Sleep(1000);
-            _doneSignal.WaitOne();
+            doneSignal.WaitOne();
 
 
                         
@@ -53,16 +53,16 @@ namespace IASS_Test
                 //Console.WriteLine("This is scheduler.cs: while the program is not terminated.");
 /*
                 // Read next update time table, and compute the next wake up time.
-                _currentTime = DateTime.Now;
-                _currentTimeInSecond = transformToTimeStamp(_currentTime);
+                currentTime = DateTime.Now;
+                currentTimeInSecond = transformToTimeStamp(currentTime);
 
-                _nextWakeUpTimeInSecond = ReadTimerTable();
+                nextWakeUpTimeInSecond = ReadTimerTable();
 
                 //the thread sleep until time expired.
-                _sleepTimeInSecond = _currentTimeInSecond - _nextWakeUpTimeInSecond;
+                sleepTimeInSecond = currentTimeInSecond - nextWakeUpTimeInSecond;
 
                 //if the time expired
-                if (_sleepTimeInSecond <= 0)
+                if (sleepTimeInSecond <= 0)
                 {
                     //ThreadPool.QueueUserWorkItem;
                 }
@@ -70,14 +70,14 @@ namespace IASS_Test
                 {
                     //sleep until time expired
                     //** the input of thread sleep is micro second
-                    Thread.Sleep(_sleepTimeInSecond*1000);
+                    Thread.Sleep(sleepTimeInSecond*1000);
                 }
 
                 //the thread is awake
                 //check whether current time matches 
-                _currentTime = DateTime.Now;
-                _currentTimeInSecond = transformToTimeStamp(_currentTime);
-                if (_currentTimeInSecond < _nextWakeUpTimeInSecond)
+                currentTime = DateTime.Now;
+                currentTimeInSecond = transformToTimeStamp(currentTime);
+                if (currentTimeInSecond < nextWakeUpTimeInSecond)
                 {
                     //the thread was waked by interrupt, just continue to compute new wake up time
                     continue;
