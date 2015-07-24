@@ -9,16 +9,16 @@ namespace IASS_Test
 {
     class RequestListener
     {   
-        EventWaitHandle _doneSignal;
-        EventWaitHandle _waitProcessRequest;
+        EventWaitHandle doneSignal;
+        EventWaitHandle waitProcessRequest;
 
         public RequestListener(EventWaitHandle doneSignal, EventWaitHandle waitProcessRequest)
         {
             //@@@@@Debug message:
             //Console.WriteLine("This is requestListener.cs: request listener is constructed.");
    
-            this._doneSignal = doneSignal;
-            this._waitProcessRequest = waitProcessRequest;
+            this.doneSignal = doneSignal;
+            this.waitProcessRequest = waitProcessRequest;
         }
 
         //main mehtod of this class (for threading)
@@ -37,10 +37,10 @@ namespace IASS_Test
             //@@@@@Debug message:
             //Console.WriteLine("This is requestListener.cs: set doneEvent[0] to say initialization finished.");
 
-            _doneSignal.Set();
+            doneSignal.Set();
             Thread.Sleep(1000);
 
-            _doneSignal.WaitOne();
+            doneSignal.WaitOne();
          
             //while the program is not terminated
             while (!Program.isProgramExit)
@@ -75,7 +75,7 @@ namespace IASS_Test
                     //@@@@@Debug message:
                     Console.WriteLine("This is requestListener.cs: handler is sleeping, I want to wake it up");                    
                     //wake up requestHandler to process new request
-                    _waitProcessRequest.Set();
+                    waitProcessRequest.Set();
                 }
                 else
                 {
