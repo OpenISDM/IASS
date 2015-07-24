@@ -23,6 +23,7 @@ namespace IASS_Test
         static void Main(string[] args)
         {
 
+			Console.WriteLine("This is IASS version 1.0");
             //@@@@@Debug message:
             //Console.WriteLine("This is program.cs: enter the IASS program.");
 

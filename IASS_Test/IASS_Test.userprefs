@@ -1,14 +1,9 @@
 ﻿<Properties StartupItem="IASS_Test/IASS_Test.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="IASS_Test/threads/Scheduler.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="IASS_Test/threads/RequestListener.cs">
     <Files>
       <File FileName="IASS_Test/Program.cs" Line="1" Column="1" />
-      <File FileName="IASS_Test/Properties/AssemblyInfo.cs" Line="1" Column="1" />
-      <File FileName="IASS_Test/threads/RequestHandler.cs" Line="1" Column="1" />
-      <File FileName="IASS_Test/classes/MonitoredCondition.cs" Line="1" Column="1" />
-      <File FileName="IASS_Test/classes/MonitoredExpression.cs" Line="1" Column="1" />
-      <File FileName="IASS_Test/threads/RequestListener.cs" Line="1" Column="1" />
-      <File FileName="IASS_Test/threads/Scheduler.cs" Line="46" Column="25" />
+      <File FileName="IASS_Test/threads/RequestListener.cs" Line="103" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
