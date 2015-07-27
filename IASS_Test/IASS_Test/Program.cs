@@ -10,6 +10,14 @@ namespace IASS_Test
 {
     class Program
     {
+        //initial information about operating system 
+        public static System.OperatingSystem os = System.Environment.OSVersion;
+        /*
+         * TODO:
+         * Since different operating systems implement thread, console, and signal through different ways,
+         * for migratability, IASS might add checking codes of os version.
+         */
+
         public static string IASSLogPath = "IASS.log";
         public static bool isProgramExit = false;
 
@@ -18,7 +26,8 @@ namespace IASS_Test
         public static Thread requestHandlerThread;
         public static Thread schedulerThread;
         static List<MonitoredCondition> MCList;
-        static List<Request> requestList; 
+        static List<Request> requestList;
+        static List<KeyValuePair<string, ulong>> timerTable; //<MOID, timestamp of next update time>        
 
         static void Main(string[] args)
         {
@@ -40,13 +49,19 @@ namespace IASS_Test
             //Console.WriteLine("This is program.cs: start allocate data structures.");            
             //#####Use hint:
             Console.WriteLine("Start setting......");
+
+            //#####Use hint:
+            Console.WriteLine("System checking......");
+                        //#####Use hint:
+            Console.WriteLine("This platform is {0}",os.ToString());
             
+
             Dictionary<string, MonitoredObject> MODictionary; //<MOID, MonitoredObject class>
             List<Notification> notificationList;//<Notificaiton class>
-            List<KeyValuePair<string, int>> timerTable; //<MOID, timestamp of next update time>
             requestList = new List<Request>();
             MCList= new List<MonitoredCondition>(); //<MonitoredCondtion class> 
             requestProcessQueue =new Queue<Request>();
+            timerTable = new List<KeyValuePair<string, ulong>>();
 
             //@@@@@Debug message:
             //Console.WriteLine("This is program.cs: data allocation finished.");
@@ -95,12 +110,13 @@ namespace IASS_Test
             //Console.WriteLine("This is program.cs: create event wait handles for thread communication.");
 
             //create event wait handlers for thread communication
-            EventWaitHandle[] _doneSignal = new EventWaitHandle[3];
+            EventWaitHandle[] doneSignal = new EventWaitHandle[3];
             for (var numberOfWaitHandle = 0; numberOfWaitHandle < 3; numberOfWaitHandle++)
             {
-                _doneSignal[numberOfWaitHandle] = new EventWaitHandle(false, EventResetMode.AutoReset);
+                doneSignal[numberOfWaitHandle] = new EventWaitHandle(false, EventResetMode.AutoReset);
             }
             EventWaitHandle waitProcessRequest = new EventWaitHandle(false, EventResetMode.AutoReset);
+            EventWaitHandle updateTimerTable = new EventWaitHandle(false, EventResetMode.AutoReset);
             
             //@@@@@Debug message:
             //Console.WriteLine("This is program.cs: finish creating event wait handles.");
@@ -111,20 +127,20 @@ namespace IASS_Test
             //@@@@@Debug message:
             //Console.WriteLine("This is program.cs: start requestListener thread.");
             
-            RequestListener requestListener = new RequestListener(_doneSignal[0], waitProcessRequest);
+            RequestListener requestListener = new RequestListener(doneSignal[0], waitProcessRequest);
             requestListenerThread = new Thread(new ThreadStart(requestListener.MainMethod));
             requestListenerThread.Start();
 
 
             //@@@@@Debug message:
             //Console.WriteLine("This is program.cs: start requestHandler thread.");
-            RequestHandler requestHandler = new RequestHandler(_doneSignal[1], waitProcessRequest);
+            RequestHandler requestHandler = new RequestHandler(doneSignal[1], waitProcessRequest, updateTimerTable);
             requestHandlerThread = new Thread(new ThreadStart(requestHandler.MainMethod));
             requestHandlerThread.Start();
 
             //@@@@@Debug message:
             //Console.WriteLine("This is program.cs: start Scheduler thread.");
-            Scheduler scheduler = new Scheduler(_doneSignal[2]);
+            Scheduler scheduler = new Scheduler(doneSignal[2], updateTimerTable);
             schedulerThread = new Thread(new ThreadStart(scheduler.MainMethod));
             schedulerThread.Start();
 
@@ -136,7 +152,7 @@ namespace IASS_Test
             //@@@@@Debug message:
             //Console.WriteLine("This is program.cs: wait for all initialization done.");   
             //block and wait for all initialization done
-            WaitHandle.WaitAll(_doneSignal);
+            WaitHandle.WaitAll(doneSignal);
 
             //@@@@@Debug message:
             //Console.WriteLine("This is program.cs: all finish signal received.");
@@ -146,7 +162,7 @@ namespace IASS_Test
             for (var numberOfWaitHandle = 0; numberOfWaitHandle < 3; numberOfWaitHandle++)
             {
 
-                _doneSignal[numberOfWaitHandle].Reset();
+                doneSignal[numberOfWaitHandle].Reset();
             }
 
             Thread.Sleep(500);
@@ -156,7 +172,7 @@ namespace IASS_Test
             for (var numberOfWaitHandle = 0; numberOfWaitHandle < 3; numberOfWaitHandle++)
             {
 
-                _doneSignal[numberOfWaitHandle].Set();
+                doneSignal[numberOfWaitHandle].Set();
             }
 
 
@@ -198,6 +214,55 @@ namespace IASS_Test
                 Console.WriteLine("This is program.cs: request: {0} ",request.GetRequestUID());   
             }
 
+        }
+        public static void updateTimerTable(MonitoredCondition processedMonitoredCondtion)
+        {
+            //@@@@@Debug message:
+            Console.WriteLine("This is scheduler.cs: method updateTimerTable updates the timerTable .");
+
+            ulong newUpdateTime;
+
+            List<MonitoredObject> usedMonitoredObject = processedMonitoredCondtion.GetMOList();
+            foreach (MonitoredObject tempMonitoredObject in usedMonitoredObject)
+            {
+                //schedule monitored object
+                newUpdateTime = Schedule(tempMonitoredObject);
+                //update to timer table
+                timerTable.Add(new KeyValuePair<string, ulong>(tempMonitoredObject.GetMonitoredObjectID(), newUpdateTime));
+
+            }
+            //sort TimberTable
+
+
+            //@@@@@Debug message:  
+/*           
+            List<MonitoredObject> tempMOList = new List<MonitoredObject>();
+            tempMOList = processedMonitoredCondtion.GetMOList();
+            foreach (var tempMO in tempMOList)
+            {
+                Console.WriteLine("Object {0} need to be updated.", tempMO.GetMonitoredObjectID());
+            }
+*/
+            //@@@@@Debug message:  
+            foreach (var MOInTimerTable in timerTable)
+            {
+                Console.WriteLine("<{0} , {1}> in timerTable", MOInTimerTable.Key, MOInTimerTable.Value);
+            }
+
+        
+        }
+        public static ulong Schedule(MonitoredObject newMonitoredObject)
+        {
+            //schedule for newMonitoredObject
+            ulong nextUpdateTime = 12345;
+            //7/27 test code
+            Random rand = new Random(Guid.NewGuid().GetHashCode());
+            nextUpdateTime = (ulong)Convert.ToInt64(rand.Next());
+
+            //@@@@@Debug message:  
+            Console.WriteLine("<{0}> is update time", nextUpdateTime);
+            
+            return nextUpdateTime;
         }
     }
 }

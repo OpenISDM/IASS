@@ -9,38 +9,34 @@ namespace IASS_Test
 {
     class MonitoredCondition
     {
-        string _MCID;
-        List<MonitoredObject> _MOList;
-        bool _monitoredConditionResult;
+        string MCID;
+        List<MonitoredObject> MOList =null;
+        bool monitoredConditionResult;
 
         //stores all the monitor expression
-        List<MonitoredExpression> _monitoredExpressions = new List<MonitoredExpression>(); 		
-        Expression _monitoredConditionLogic;
+        List<MonitoredExpression> monitoredExpressions = new List<MonitoredExpression>(); 		
+        Expression monitoredConditionLogic;
         //Constructor
         public MonitoredCondition(List<MonitoredExpression> monitoredExpressions, Expression monitorConditionLogic)
         {	
             //constructor 
-            _monitoredExpressions = monitoredExpressions;    //a list of monitoredExpressions
-            _monitoredConditionLogic = monitorConditionLogic;
-            _monitoredConditionResult = false;
+            monitoredExpressions = monitoredExpressions;    //a list of monitoredExpressions
+            monitoredConditionLogic = monitorConditionLogic;
+            monitoredConditionResult = false;
         }
 
         //Get Methods
         public string GetMCID()
         {
-            return _MCID;
-        }
-        public List<MonitoredObject> GetMOList()
-        {
-            return _MOList;
+            return MCID;
         }
         //Methods
         public void UpdateMonitoredExpression(int monitoredObjectID, int currentValue)
         { 	
             //check the expression results when MO is updated
-            for (int i = 0; i < _monitoredExpressions.Count; i++)
+            for (int i = 0; i < monitoredExpressions.Count; i++)
             {
-                if (_monitoredExpressions[i]._monitoredObjectID == monitoredObjectID)
+                if (monitoredExpressions[i].monitoredObjectID == monitoredObjectID)
                 {
                     //_monitoredExpressions[i].checkMonitoredExpression(currentValue);
                 }
@@ -54,7 +50,15 @@ namespace IASS_Test
         public void SetMCID(string requestID)
         {
             //7/16 version1: test code
-            _MCID = requestID + "***";
+            MCID = requestID + "***";
+        }
+        public void SetMOList(List<MonitoredObject> MOList)
+        {
+            this.MOList = MOList;
+        }
+        public List<MonitoredObject> GetMOList()
+        {
+            return MOList;
         }
     }
 }

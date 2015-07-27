@@ -10,18 +10,20 @@ namespace IASS_Test
     class Scheduler
     {
         EventWaitHandle doneSignal;
+        EventWaitHandle updateTimerTable;
 
         DateTime currentTime;
         int currentTimeInSecond = 0;
         int nextWakeUpTimeInSecond = 0;
-        int sleepTimeInSecond = 0;
+        int sleepTimeInSecond = 100;
 
-        public Scheduler(EventWaitHandle doneSignal)
+        public Scheduler(EventWaitHandle doneSignal, EventWaitHandle updateTimerTable)
         {
             //@@@@@Debug message:
             //Console.WriteLine("This is Scheduler.cs: request handler is constructed.");
 
             this.doneSignal = doneSignal;
+            this.updateTimerTable = updateTimerTable;
         }
 
         //main mehtod of this class (for threading)
@@ -51,6 +53,7 @@ namespace IASS_Test
             {
                 //@@@@@Debug message:
                 //Console.WriteLine("This is scheduler.cs: while the program is not terminated.");
+                updateTimerTable.WaitOne(sleepTimeInSecond * 1000);
 /*
                 // Read next update time table, and compute the next wake up time.
                 currentTime = DateTime.Now;

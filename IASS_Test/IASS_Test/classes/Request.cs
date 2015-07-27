@@ -8,19 +8,19 @@ namespace IASS_Test
 {
     class Request
     {
-        string _requestUID = "";
-        string _MCstring = "water >5 & fire = TRUE";
-        string _pointerToNotificaitionList =null;
-        string _pointerToMC = "";
-        bool _ModifyByOthers =false;
-        bool _ViewByOthers =false;
+        string requestUID = "";
+        string MCstring = "water >5 & fire = TRUE";
+        string pointerToNotificaitionList =null;
+        string pointerToMC = "";
+        bool ModifyByOthers =false;
+        bool ViewByOthers =false;
 
         public Request(string MCstring, string pointerToNotificationList, bool ModifyByOthers, bool ViewByOthers){
-            this._MCstring = MCstring;
-            this._pointerToNotificaitionList = pointerToNotificationList;
-            this._ModifyByOthers = ModifyByOthers;
-            this._ViewByOthers = ViewByOthers;
-            this._requestUID = GenerateRequestID(); 
+            this.MCstring = MCstring;
+            this.pointerToNotificaitionList = pointerToNotificationList;
+            this.ModifyByOthers = ModifyByOthers;
+            this.ViewByOthers = ViewByOthers;
+            this.requestUID = GenerateRequestID(); 
 
         }
         
@@ -30,7 +30,7 @@ namespace IASS_Test
         {
             string requestUniquID ="";
             //version 1 :7/16, test code
-            requestUniquID = _MCstring + "_"+DateTime.Now.ToString();
+            requestUniquID = MCstring + "_"+DateTime.Now.ToString();
             return requestUniquID;
         }
         public void SetPointerTOMC(string pointerToMC)
@@ -40,23 +40,23 @@ namespace IASS_Test
         //Get, Set Method
         public string GetMCstring()
         {
-            return _MCstring;
+            return MCstring;
         }
         public string GetPointerToNotificationList()
         {
-            return _pointerToNotificaitionList;
+            return pointerToNotificaitionList;
         }
         public string GetRequestUID()
         {
-            return _requestUID;
+            return requestUID;
         }
         public bool GetModifyFlag()
         {
-            return _ModifyByOthers;
+            return ModifyByOthers;
         }
         public bool GetViewFlag()
         {
-            return _ViewByOthers;
+            return ViewByOthers;
         }
     }
 }

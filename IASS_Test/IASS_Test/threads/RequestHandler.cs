@@ -11,14 +11,16 @@ namespace IASS_Test
     {
         EventWaitHandle doneSignal;
         EventWaitHandle waitProcessRequest;
+        EventWaitHandle updateTimerTable;
 
-        public RequestHandler(EventWaitHandle doneSignal, EventWaitHandle waitProcessRequest)
+        public RequestHandler(EventWaitHandle doneSignal, EventWaitHandle waitProcessRequest, EventWaitHandle updateTimerTable)
         {
             //@@@@@Debug message:
             //Console.WriteLine("This is requestHandler.cs: request handler is constructed.");
 
             this.doneSignal = doneSignal;
             this.waitProcessRequest = waitProcessRequest;
+            this.updateTimerTable = updateTimerTable;
         }
 
         //main mehtod of this class (for threading)
@@ -79,18 +81,30 @@ namespace IASS_Test
                         Console.WriteLine("***This is requestHandler.cs: the MC is {0}", pointerToMC);
                         //update the request with MC pointer
                         //Add request to request list.
-
                         AddToRequestList(pointerToMC, currentRequest);
 
-                        pointerToMC = AddToMCList(processedMonitoredCondtion);
 
-/*
                         //schedule next update time for used monitored objects
                         //update timer table, and sort timer table by next update time
-                        updateTimerTable(processedMonitoredCondtion);
-*/                      
+                        Program.updateTimerTable(processedMonitoredCondtion);
+                        if (Program.schedulerThread.ThreadState != ThreadState.Running)
+                        {
+                            //@@@@@Debug message:
+                            Console.WriteLine("This is requestHandler.cs: scheduler is sleeping, interrupt it");
+                            //set updateTimerTable signal
+                            updateTimerTable.Set();
+                            //@@@@@Debug message:
+                            Console.WriteLine("This is requestHandler.cs: scheduler is awake");
+
+                        }
+                        else
+                        {
+                            //@@@@@Debug message:
+                            Console.WriteLine("This is requestHandler.cs: scheduler is running");
+                        }
 
                     }
+
                 }
 
             }
@@ -112,6 +126,32 @@ namespace IASS_Test
             //7/16 version1: sample monitoredCondition
             processedMonitoredCondtion = new MonitoredCondition(null,null);
             processedMonitoredCondtion.SetMCID(MCstring+"__");
+            
+            
+            //7/27 test code
+            string source = MCstring;
+            string[] splitMonitoredObject;
+            List<MonitoredObject> monitoredObjectListInCondition =new List<MonitoredObject>();
+            
+            splitMonitoredObject = source.Split(',');
+            //@@@@@Debug message:
+            Console.WriteLine("Condition {0}",processedMonitoredCondtion.GetMCID());
+            
+            foreach(var partMonitoredObject in splitMonitoredObject){
+                MonitoredObject newMonitoredObject = new MonitoredObject();
+                newMonitoredObject.SetMonitoredObjectID(partMonitoredObject);
+                monitoredObjectListInCondition.Add(newMonitoredObject);
+            }
+            processedMonitoredCondtion.SetMOList(monitoredObjectListInCondition);
+            //@@@@@Debug message:  
+/*
+            List<MonitoredObject> tempMOList = new List<MonitoredObject>();
+            tempMOList = processedMonitoredCondtion.GetMOList();
+            foreach (var tempMO in tempMOList)
+            {
+                Console.WriteLine("Object {0} ", tempMO.GetMonitoredObjectID());
+            }
+*/
 
             //devide MC string to List of MEs
             //verify MEs
@@ -128,15 +168,7 @@ namespace IASS_Test
             //update the request with the pointer of MC, add the request to request list
             Program.AddToRequestList(acceptedRequest);
         }
-        public void updateTimerTable(MonitoredCondition processedMonitoredCondtion)
-        {
-            List<MonitoredObject> usedMonitoredObject = processedMonitoredCondtion.GetMOList();
-            foreach (MonitoredObject tempMonitoredObject in usedMonitoredObject)
-            {
-                //schedule monitored object
-                //Add to timer table
-            }
-        }
+
         //7/16 version 1: test code
         public void timeStop(double pauseTime){
             DateTime timeStart = DateTime.Now;

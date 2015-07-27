@@ -8,15 +8,15 @@ namespace IASS_Test
 {
     class MonitoredObject
     {
-        private int _currentValue;
-        private int _validTime;
-        private int _lastUpdateTime;
-        private int _nextUpdateTime;
-        private int _updateTimeInterval;
-        private int _ShortestResponseTime;
-        private int _monitoredObjectID;
+        private int currentValue;
+        private int validTime;
+        private int lastUpdateTime;
+        private int nextUpdateTime;
+        private int updateTimeInterval;
+        private int ShortestResponseTime;
+        private string monitoredObjectID;
 
-        List<MonitoredCondition> _monitoredConditions = new List<MonitoredCondition>();
+        List<MonitoredCondition> monitoredConditions = new List<MonitoredCondition>();
 
 
         public int AccessPath()
@@ -29,16 +29,25 @@ namespace IASS_Test
             //			_lastUpdateTime = lastUpdateTime;
             //			_nextUpdateTime = lastUpdateTime + _updateTimeInterval;
 
-            return _currentValue;
+            return currentValue;
         }
 
         //check all update all monitor condition result in _monitorConditions list 
         public void UpdateMonitoredCondition()
         {
-            for (int i = 0; i < _monitoredConditions.Count; i++)
+            for (int i = 0; i < monitoredConditions.Count; i++)
             {
                 //				_monitoredConditions [i].CheckMonitoredExpression(_monitoredObjectID, _currentValue);
             }
+        }
+        //7/27 test code to generate sample monitored object
+        public void SetMonitoredObjectID(string monitoredObjectID)
+        {
+            this.monitoredObjectID = monitoredObjectID;
+        }
+        public string GetMonitoredObjectID()
+        {
+            return monitoredObjectID;
         }
     }
 }

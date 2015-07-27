@@ -9,23 +9,23 @@ namespace IASS_Test
 {
     class MonitoredExpression //one monitor expression  ex: water>5
     {
-        public int _monitoredObjectID;
-        int _currExpressionValue;
-        bool _monitoredExpressionResult;
+        public int monitoredObjectID;
+        int currExpressionValue;
+        bool monitoredExpressionResult;
 
         //**can use del if expression doesn't work
         //ex: Expression<Func<int, bool>> expr = num => num < 5;
-        Expression _expression;		
+        Expression expression;		
         
 
         public MonitoredExpression(int MonitoredObjectID, int currExpressionValue, Expression expression)
         {	
             //constructor
-            this._monitoredObjectID = MonitoredObjectID;
-            this._currExpressionValue = currExpressionValue;
+            this.monitoredObjectID = MonitoredObjectID;
+            this.currExpressionValue = currExpressionValue;
 
             //expression will be passed in already formatted
-            this._expression = expression;		
+            this.expression = expression;		
         }
 
         public void UpdateMonitoredExpression(int currentValue)
