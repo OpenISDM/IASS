@@ -5,6 +5,10 @@ Project Name:
     
     IASS(Intelligent Active Storage Service)
  
+File Name:
+
+    Notification.cs
+    
 Abstract:
  
 
@@ -27,23 +31,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IASS.Collections;
 
-namespace IASS
+namespace IASS.Collections
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            string requestID = "kevin God";
-            string monitoredConditionExpression = "waterLevel > 100";
-            bool modifyByOthers = true;
-            bool viewByOthers = true;
+	class Notification
+	{
+		string notificaitonID;
+		string notificationType;
+		string pointerToNotificationList;
 
-            Request newRequest = new Request(requestID, monitoredConditionExpression, modifyByOthers, viewByOthers);
-
-            newRequest.GetRequestID();
-
-        }
-    }
+	}
 }
