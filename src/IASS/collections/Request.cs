@@ -36,50 +36,105 @@ using System.Threading.Tasks;
 namespace IASS.Collections
 {
 
-	class Request
-	{
-		private string requestID;
-		private string monitoredConditionExpression;
-		private bool modifyByOthers;
-		private bool viewByOthers;
-		//pointer to corresponding MonitoredCondition
-		//		string pointerToMonitoredCondition
+    class Request
+    {
+        private string requestID;
+        private string monitoredConditionExpression;
+        private bool modifyByOthers;
+        private bool viewByOthers;
+        //pointer to corresponding MonitoredCondition
+        //		string pointerToMonitoredCondition
 
-		public Request(string requestID, string monitoredConditionExpression, bool modifyByOthers, bool viewByOthers){
-			this.requestID = requestID;
-			this.monitoredConditionExpression = monitoredConditionExpression;
-			this.modifyByOthers = modifyByOthers;
-			this.viewByOthers = viewByOthers;
-		}
+        public Request(string requestID, string monitoredConditionExpression, bool modifyByOthers, bool viewByOthers)
+        {
+            this.requestID = requestID;
+            this.monitoredConditionExpression = monitoredConditionExpression;
+            this.modifyByOthers = modifyByOthers;
+            this.viewByOthers = viewByOthers;
+        }
 
-		public string GetRequestID ()
-		{
-			return this.requestID;
-		}
+        /*
+         Routine Name:
+             RID(requestID)
 
-		private void SetModifyByOthers (bool modifyByOthers)
-		{
-			this.modifyByOthers = modifyByOthers;
-		}
+         Routine Description:
+             This function allows the caller to Get and Set values.
+             We implement it using C# feature - Properties
 
-		private bool GetModifyByOthers ()
-		{
-			return this.modifyByOthers;
-		}
+         Arguments:
+             None.
 
-		private void SetViewByOthers (bool viewByOthers)
-		{
-			this.viewByOthers = viewByOthers;
-		}
+         Return Value:
+             The function returns request ID.
+         */
+        public string RID
+        {
+            get
+            {
+                return requestID;
+            }
+            set
+            {
+                requestID = value;
+            }
 
-		private bool GetViewByOthes ()
-		{ 
-			return this.viewByOthers;
-		}
+        }
 
+        /*
+        Routine Name:
+            MBO(modifyByOthers)
 
+        Routine Description:
+            This function allows the caller to Get and Set values.
+            We implement it using C# feature - Properties
 
-	}
+        Arguments:
+            None.
+
+        Return Value:
+            The function returns flag of modifyByOthers.
+        */
+        public bool MBO
+        {
+            get
+            {
+                return modifyByOthers;
+            }
+            set
+            {
+                modifyByOthers = value;
+            }
+
+        }
+
+        /*
+        Routine Name:
+            VBO(viewByOthers)
+
+        Routine Description:
+            This function allows the caller to Get and Set values.
+            We implement it using C# feature - Properties
+
+        Arguments:
+            None.
+
+        Return Value:
+            The function returns flag of viewByOthers.
+        */
+        public bool VBO
+        {
+            get
+            {
+                return viewByOthers;
+            }
+            set
+            {
+                viewByOthers = value;
+            }
+
+        }
+
+    }
 
 }
 
