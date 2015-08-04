@@ -10,9 +10,9 @@ File Name:
     MonitoredCondition.cs
  
 Abstract:
- 
 
- 
+ 	This file contains the MonitoredCondition class which stores the information of the condition that IASS is monitoring. 
+
 Authors:  
  
     Li-Kai, Chi, kevinjipotw@gmail.com
@@ -43,7 +43,7 @@ namespace IASS.Collections
         private string expression;
         private bool monitoredConditionResult;
 
-        //Constructor
+        //class constructor
         public MonitoredCondition(string expression, List<MonitoredObject> monitoredObjectList)
         {
             this.expression = expression;
@@ -51,6 +51,19 @@ namespace IASS.Collections
             EvaluateExpression();
         }
 
+        /*
+        Routine Name:
+            EvaluateExpression()
+
+        Routine Description:
+            //TODO 
+
+        Arguments:
+            None.
+
+        Return Value:
+            None.
+        */
         private void EvaluateExpression()
         {
             var parameter = Expression.Parameter(typeof(List<MonitoredObject>), "monitoredObjectList");
