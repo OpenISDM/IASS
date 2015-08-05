@@ -14,7 +14,7 @@ Abstract:
 	This file contains the MonitoredObject class which is one of the main data structure of IASS that stores the information of the data we are monitoring.
  
 Authors:  
- 
+
     Li-Kai, Chi, kevinjipotw@gmail.com
     Johnson Su, johnsonsu@iis.sinica.edu.tw
  

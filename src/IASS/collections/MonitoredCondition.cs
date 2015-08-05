@@ -64,7 +64,7 @@ namespace IASS.Collections
         Return Value:
             None.
         */
-        private void EvaluateExpression()
+		public void EvaluateExpression()
         {
             var parameter = Expression.Parameter(typeof(List<MonitoredObject>), "monitoredObjectList");
 
