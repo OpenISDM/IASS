@@ -11,7 +11,7 @@ File Name:
  
 Abstract:
  
-
+	The Request class stores the requests that apps asks from IASS.
  
 Authors:  
  
@@ -42,9 +42,9 @@ namespace IASS.Collections
         private string monitoredConditionExpression;
         private bool modifyByOthers;
         private bool viewByOthers;
-        //pointer to corresponding MonitoredCondition
-        //		string pointerToMonitoredCondition
 
+
+		//class constructor 
         public Request(string requestID, string monitoredConditionExpression, bool modifyByOthers, bool viewByOthers)
         {
             this.requestID = requestID;

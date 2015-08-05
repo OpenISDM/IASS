@@ -10,11 +10,11 @@ File Name:
     MonitoredObject.cs
  
 Abstract:
- 
-
+	
+	This file contains the MonitoredObject class which is one of the main data structure of IASS that stores the information of the data we are monitoring.
  
 Authors:  
- 
+
     Li-Kai, Chi, kevinjipotw@gmail.com
     Johnson Su, johnsonsu@iis.sinica.edu.tw
  
@@ -217,27 +217,63 @@ namespace IASS.Collections
 
         }
 
-        //adds monitored condition
+        /*
+        Routine Name:
+            AddMonitoredCondition(newMonitoredCondition)
+
+        Routine Description:
+            This function adds a new MonitoredCondition object to the MonitoredObject's monitoredCondition list.
+
+        Arguments:
+            MonitoredCondition newMonitoredCondition
+
+        Return Value:
+            None.
+        */
         private void AddMonitoredCondition(MonitoredCondition newMonitoredCondition)
         {
             monitoredConditions.Add(newMonitoredCondition);
         }
 
-        //get the MonitoredObject's current value
+        /*
+        Routine Name:
+            AddMonitoredCondition(newMonitoredCondition)
+
+        Routine Description:
+            This function adds a new MonitoredCondition object to the MonitoredObject's monitoredCondition list.
+
+        Arguments:
+            MonitoredCondition newMonitoredCondition
+
+        Return Value:
+            None.
+        */
         public string AccessPath()
         {
             //run script/function to get value
             //script/function will return currentValue, validTime, and lastUpdateTime 
 
-            //			_currentValue = updatedValue;
-            //			_validTime = validTime;
-            //			_lastUpdateTime = lastUpdateTime;
-            //			_nextUpdateTime = lastUpdateTime + _updateTimeInterval;
+            //			currentValue = updatedValue;
+            //			validTime = validTime;
+            //			lastUpdateTime = lastUpdateTime;
+            //			nextUpdateTime = lastUpdateTime + updateTimeInterval;
 
             return currentValue;
         }
 
-        //evaluate all monitor conditions monitorConditions list 
+        /*
+        Routine Name:
+            EvaluateMonitoredConditions()
+
+        Routine Description:
+            This function evaluates all the MonitoredConditions that are stored in the monitoredCondition list.
+
+        Arguments:
+            None.
+
+        Return Value:
+            None.
+        */
         public void EvaluateMonitoredConditions()
         {
             for ( int i = 0; i < monitoredConditions.Count; i++ ) {
