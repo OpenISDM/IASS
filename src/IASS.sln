@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
+# Visual Studio 2012
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IASS", "IASS\IASS.csproj", "{9C35980B-3D04-4591-84DC-D66C71232F9D}"
+Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "IASS", "IASS\IASS.csproj", "{9C35980B-3D04-4591-84DC-D66C71232F9D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
