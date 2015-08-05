@@ -43,12 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MonitoredCondition.cs" />
-    <Compile Include="MonitoredObject.cs" />
-    <Compile Include="Notification.cs" />
+    <Compile Include="Collections\MonitoredCondition.cs" />
+    <Compile Include="Collections\MonitoredObject.cs" />
+    <Compile Include="Collections\Notification.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Request.cs" />
+    <Compile Include="Collections\Request.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
