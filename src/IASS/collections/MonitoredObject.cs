@@ -45,18 +45,51 @@ namespace IASS.Collections
         private ulong nextUpdateTime;
         private ulong updateTimeInterval;
         private ulong shortestResponseTime;
-        private List<MonitoredCondition> monitoredConditions = new List<MonitoredCondition>();
+        private List<MonitoredCondition> monitoredConditions;
 
-        //class constructor
-        public MonitoredObject(string monitoredObjectID)
+        /*
+        Routine Name:
+            Constructor
+
+        Routine Description:
+            This function allows the caller to init attributes 
+            of Monitored object.
+
+        Arguments:
+            MonitoredObjectID - 
+            CurrentValue -
+            ValidTime -
+            LastUpdateTime -
+            NextUpdateTime -
+            UpdateTimeInterval -
+            ShortestResponseTime -
+
+        Return Value:
+            The function returns monitor object ID.
+        */
+        public MonitoredObject(
+            string MonitoredObjectID,
+            string CurrentValue,
+            ulong ValidTime,
+            ulong LastUpdateTime,
+            ulong NextUpdateTime,
+            ulong UpdateTimeInterval,
+            ulong ShortestResponseTime
+            )
         {
-            this.monitoredObjectID = monitoredObjectID;
-
+            this.monitoredObjectID = MonitoredObjectID;
+            this.currentValue = CurrentValue;
+            this.validTime = ValidTime;
+            this.lastUpdateTime = LastUpdateTime;
+            this.nextUpdateTime = NextUpdateTime;
+            this.updateTimeInterval = UpdateTimeInterval;
+            this.shortestResponseTime = ShortestResponseTime;
+            this.monitoredConditions = new List<MonitoredCondition>();
         }
 
         /*
         Routine Name:
-            MOID(MonitoredObjectID)
+            ID
 
         Routine Description:
             This function allows the caller to Get and Set values.
@@ -68,7 +101,7 @@ namespace IASS.Collections
         Return Value:
             The function returns monitor object ID.
         */
-        public string MOID
+        public string ID
         {
             get
             {
@@ -83,7 +116,7 @@ namespace IASS.Collections
 
         /*
         Routine Name:
-            CV(currentValue)
+            CurrentValue
 
         Routine Description:
             This function allows the caller to Get and Set values.
@@ -95,7 +128,7 @@ namespace IASS.Collections
         Return Value:
             The function returns current value of monitored object.
         */
-        public string CV
+        public string CurrentValue
         {
             get
             {
@@ -110,7 +143,7 @@ namespace IASS.Collections
 
         /*
         Routine Name:
-            LUT(lastUpdateTime)
+            VaildTime
 
         Routine Description:
             This function allows the caller to Get and Set values.
@@ -122,7 +155,34 @@ namespace IASS.Collections
         Return Value:
             The function returns last update time of monitored object.
         */
-        public ulong LUT
+        public ulong ValidTime
+        {
+            get
+            {
+                return validTime;
+            }
+            set
+            {
+                validTime = value;
+            }
+
+        }
+
+        /*
+        Routine Name:
+            LastUpdateTime
+
+        Routine Description:
+            This function allows the caller to Get and Set values.
+            We implement it using C# feature - Properties
+
+        Arguments:
+            None.
+
+        Return Value:
+            The function returns last update time of monitored object.
+        */
+        public ulong LastUpdateTime
         {
             get
             {
@@ -137,7 +197,7 @@ namespace IASS.Collections
 
         /*
         Routine Name:
-            NUT(nextUpdateTime)
+            NextUpdateTime
 
         Routine Description:
             This function allows the caller to Get and Set values.
@@ -149,7 +209,7 @@ namespace IASS.Collections
         Return Value:
             The function returns next update time of monitored object.
         */
-        public ulong NUT
+        public ulong NextUpdateTime
         {
             get
             {
@@ -164,7 +224,7 @@ namespace IASS.Collections
 
         /*
         Routine Name:
-            UTI(updateTimeInterval)
+            UpdateTimeInterval
 
         Routine Description:
             This function allows the caller to Get and Set values.
@@ -176,7 +236,7 @@ namespace IASS.Collections
         Return Value:
             The function returns update time interval of monitored object.
         */
-        public ulong UTI
+        public ulong UpdateTimeInterval
         {
             get
             {
@@ -192,7 +252,7 @@ namespace IASS.Collections
 
         /*
         Routine Name:
-            SRT(shortestResponseTime)
+            ShortestResponseTime
 
         Routine Description:
             This function allows the caller to Get and Set values.
@@ -204,7 +264,7 @@ namespace IASS.Collections
         Return Value:
             The function returns shortest response time of monitored object.
         */
-        public ulong SRT
+        public ulong ShortestResponseTime
         {
             get
             {
@@ -219,7 +279,35 @@ namespace IASS.Collections
 
         /*
         Routine Name:
-            AddMonitoredCondition(newMonitoredCondition)
+            MonitoredConditions
+
+        Routine Description:
+            This function adds a new MonitoredCondition object to the 
+            MonitoredObject's monitoredCondition list.
+
+        Arguments:
+            MonitoredCondition newMonitoredCondition
+
+        Return Value:
+            None.
+        */
+
+        public List<MonitoredCondition> MonitoredConditions
+        {
+            get
+            {
+                return monitoredConditions;
+            }
+            set
+            {
+                monitoredConditions = value;
+            }
+        }
+
+
+        /*
+        Routine Name:
+            AddMonitoredCondition
 
         Routine Description:
             This function adds a new MonitoredCondition object to the MonitoredObject's monitoredCondition list.
@@ -230,20 +318,20 @@ namespace IASS.Collections
         Return Value:
             None.
         */
-        private void AddMonitoredCondition(MonitoredCondition newMonitoredCondition)
+        public void AddMonitoredCondition(MonitoredCondition newMonitoredCondition)
         {
-            monitoredConditions.Add(newMonitoredCondition);
+            this.monitoredConditions.Add(newMonitoredCondition);
         }
 
         /*
         Routine Name:
-            AddMonitoredCondition(newMonitoredCondition)
+            AccessPath
 
         Routine Description:
-            This function adds a new MonitoredCondition object to the MonitoredObject's monitoredCondition list.
+           
 
         Arguments:
-            MonitoredCondition newMonitoredCondition
+            
 
         Return Value:
             None.
@@ -276,8 +364,8 @@ namespace IASS.Collections
         */
         public void EvaluateMonitoredConditions()
         {
-            for ( int i = 0; i < monitoredConditions.Count; i++ ) {
-                monitoredConditions[i].EvaluateExpression();
+            foreach ( var count in monitoredConditions ) {
+                count.EvaluateExpression();
             }
         }
 

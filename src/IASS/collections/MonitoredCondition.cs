@@ -48,6 +48,7 @@ namespace IASS.Collections
         {
             this.expression = expression;
             this.monitoredObjectList = monitoredObjectList;
+            this.monitoredConditionResult = false;
             EvaluateExpression();
         }
 
@@ -64,13 +65,13 @@ namespace IASS.Collections
         Return Value:
             None.
         */
-		public void EvaluateExpression()
+        public void EvaluateExpression()
         {
-            var parameter = Expression.Parameter(typeof(List<MonitoredObject>), "monitoredObjectList");
+            //var parameter = Expression.Parameter(typeof(List<MonitoredObject>), "monitoredObjectList");
 
-            var expression = System.Linq.Dynamic.DynamicExpression.ParseLambda(new[] { parameter }, null, this.expression);
-            var result = (bool) expression.Compile().DynamicInvoke(monitoredObjectList);
-            monitoredConditionResult = result;
+            //var expression = System.Linq.Dynamic.DynamicExpression.ParseLambda(new[] { parameter }, null, this.expression);
+            //var result = (bool) expression.Compile().DynamicInvoke(monitoredObjectList);
+            //monitoredConditionResult = result;
         }
 
 
