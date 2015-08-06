@@ -11,7 +11,9 @@ File Name:
  
 Abstract:
 	
-	This file contains the MonitoredObject class which is one of the main data structure of IASS that stores the information of the data we are monitoring.
+	This file contains the MonitoredObject class which is one of 
+    the main data structure of IASS that stores the information of 
+    the data we are monitoring.
  
 Authors:  
 
@@ -153,7 +155,7 @@ namespace IASS.Collections
             None.
 
         Return Value:
-            The function returns last update time of monitored object.
+            The function returns valid time of monitored object.
         */
         public ulong ValidTime
         {
@@ -282,6 +284,9 @@ namespace IASS.Collections
             MonitoredConditions
 
         Routine Description:
+            This function allows the caller to Get and Set values.
+            We implement it using C# feature - Properties
+
             This function adds a new MonitoredCondition object to the 
             MonitoredObject's monitoredCondition list.
 

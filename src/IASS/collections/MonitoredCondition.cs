@@ -11,7 +11,8 @@ File Name:
  
 Abstract:
 
- 	This file contains the MonitoredCondition class which stores the information of the condition that IASS is monitoring. 
+ 	This file contains the MonitoredCondition class which stores 
+    the information of the condition that IASS is monitoring. 
 
 Authors:  
  
