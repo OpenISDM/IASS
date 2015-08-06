@@ -112,7 +112,8 @@ namespace IASS.Collections
             None.
 
         Return Value:
-            The function returns an expression of monitored condition form MonitoredCondition object.
+            The function returns an expression of monitored condition 
+            form MonitoredCondition object.
         */
         public string MonitoredConditionExpression
         {
