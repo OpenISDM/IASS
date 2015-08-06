@@ -65,7 +65,7 @@ namespace IASS.Collections
             ShortestResponseTime -
 
         Return Value:
-            The function returns monitor object ID.
+            None.
         */
         public MonitoredObject(
             string MonitoredObjectID,

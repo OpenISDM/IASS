@@ -34,11 +34,116 @@ using System.Threading.Tasks;
 
 namespace IASS.Collections
 {
-	class Notification
-	{
-		string notificaitonID;
-		string notificationType;
-		string pointerToNotificationList;
+    class Notification
+    {
+        private string notificaitonID;
+        private string notificationType;
+        private string notificationMessage;
 
-	}
+        /*
+        Routine Name:
+            Constructor
+
+        Routine Description:
+            This function allows the caller to init attributes 
+            of notification object.
+
+        Arguments:
+            NotificaitonID - 
+            NotificationType -
+            NotificationMessage -
+
+        Return Value:
+            None.
+        */
+        public Notification(
+            string notficationID,
+            string notificationType,
+            string notificationMessage
+            )
+        {
+            this.notificaitonID = notficationID;
+            this.notificationType = notificationType;
+            this.notificationMessage = notificationMessage;
+        }
+
+        /*
+         Routine Name:
+             ID
+
+         Routine Description:
+             This function allows the caller to Get and Set values.
+             We implement it using C# feature - Properties
+
+         Arguments:
+             None.
+
+         Return Value:
+             The function returns a notification ID.
+         */
+        public string ID
+        {
+            get
+            {
+                return notificaitonID;
+            }
+            set
+            {
+                notificaitonID = value;
+            }
+
+        }
+        /*
+         Routine Name:
+             ActionType
+
+         Routine Description:
+             This function allows the caller to Get and Set values.
+             We implement it using C# feature - Properties
+
+         Arguments:
+             None.
+
+         Return Value:
+             The function returns an action type of notification.
+         */
+        public string ActionType
+        {
+            get
+            {
+                return notificationType;
+            }
+            set
+            {
+                notificationType = value;
+            }
+
+        }
+        /*
+         Routine Name:
+             Message
+
+         Routine Description:
+             This function allows the caller to Get and Set values.
+             We implement it using C# feature - Properties
+
+         Arguments:
+             None.
+
+         Return Value:
+             The function returns a message string of notification.
+         */
+        public string Message
+        {
+            get
+            {
+                return notificationMessage;
+            }
+            set
+            {
+                notificationMessage = value;
+            }
+
+        }
+    }
 }

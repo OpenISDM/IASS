@@ -24,9 +24,6 @@ Major Revision History:
  */
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using IASS.Collections;
 
 namespace IASS
@@ -56,7 +53,7 @@ namespace IASS
                 20000));
 
             mOList.Add(new MonitoredObject(
-                "dbc2fd8684799de4f22fa1ad936a9de0", 
+                "dbc2fd8684799de4f22fa1ad936a9de0",
                 "9999",
                 1638777864,
                 5663215654,
@@ -71,9 +68,9 @@ namespace IASS
 
             Console.WriteLine();
             foreach ( MonitoredObject mo in mOList ) {
-                Console.Write("Your .NET version is {0}",typeof(string).Assembly.ImageRuntimeVersion);
+                Console.Write("Your .NET version is {0}", typeof(string).Assembly.ImageRuntimeVersion);
                 Console.WriteLine("-------------------------");
-                Console.WriteLine("MonitoredObjectID: {0}",mo.ID);
+                Console.WriteLine("MonitoredObjectID: {0}", mo.ID);
                 Console.WriteLine("CurrentValue: {0}", mo.CurrentValue);
                 Console.WriteLine("ValidTime: {0}", mo.ValidTime);
                 Console.WriteLine("LastUpdateTime: {0}", mo.LastUpdateTime);

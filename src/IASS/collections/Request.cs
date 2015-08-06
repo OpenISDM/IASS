@@ -43,19 +43,39 @@ namespace IASS.Collections
         private bool modifyByOthers;
         private bool viewByOthers;
 
+        /*
+        Routine Name:
+            Constructor
 
-		//class constructor 
-        public Request(string requestID, string monitoredConditionExpression, bool modifyByOthers, bool viewByOthers)
+        Routine Description:
+            This function allows the caller to init attributes 
+            of notification object.
+
+        Arguments:
+            RequestID - 
+            MonitoredConditionExpression -
+            ModifyByOthers -
+            ViewByOthers -
+
+        Return Value:
+            None.
+        */
+        public Request(
+            string requestID,
+            string expression,
+            bool modifyByOthers,
+            bool viewByOthers
+            )
         {
             this.requestID = requestID;
-            this.monitoredConditionExpression = monitoredConditionExpression;
+            this.monitoredConditionExpression = expression;
             this.modifyByOthers = modifyByOthers;
             this.viewByOthers = viewByOthers;
         }
 
         /*
          Routine Name:
-             RID(requestID)
+             ID
 
          Routine Description:
              This function allows the caller to Get and Set values.
@@ -67,7 +87,7 @@ namespace IASS.Collections
          Return Value:
              The function returns request ID.
          */
-        public string RID
+        public string ID
         {
             get
             {
@@ -82,7 +102,34 @@ namespace IASS.Collections
 
         /*
         Routine Name:
-            MBO(modifyByOthers)
+            MonitoredConditionExpression
+
+        Routine Description:
+            This function allows the caller to Get and Set values.
+            We implement it using C# feature - Properties
+
+        Arguments:
+            None.
+
+        Return Value:
+            The function returns an expression of monitored condition form MonitoredCondition object.
+        */
+        public string MonitoredConditionExpression
+        {
+            get
+            {
+                return monitoredConditionExpression;
+            }
+            set
+            {
+                monitoredConditionExpression = value;
+            }
+
+        }
+
+        /*
+        Routine Name:
+            ModifyByOthers
 
         Routine Description:
             This function allows the caller to Get and Set values.
@@ -94,7 +141,7 @@ namespace IASS.Collections
         Return Value:
             The function returns flag of modifyByOthers.
         */
-        public bool MBO
+        public bool ModifyByOthers
         {
             get
             {
@@ -109,7 +156,7 @@ namespace IASS.Collections
 
         /*
         Routine Name:
-            VBO(viewByOthers)
+            ViewByOthers
 
         Routine Description:
             This function allows the caller to Get and Set values.
@@ -121,7 +168,7 @@ namespace IASS.Collections
         Return Value:
             The function returns flag of viewByOthers.
         */
-        public bool VBO
+        public bool ViewByOthers
         {
             get
             {
