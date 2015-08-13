@@ -40,7 +40,6 @@ namespace IASS.Collections
 {
     public class MonitoredObject
     {
-        private string monitoredObjectID;
         private string currentValue;
         private ulong validTime;
         private ulong lastUpdateTime;
@@ -48,6 +47,7 @@ namespace IASS.Collections
         private ulong updateTimeInterval;
         private ulong shortestResponseTime;
         private List<MonitoredCondition> monitoredConditions;
+        private Del accessPath;
 
         /*
         Routine Name:
@@ -70,16 +70,15 @@ namespace IASS.Collections
             None.
         */
         public MonitoredObject(
-            string MonitoredObjectID,
             string CurrentValue,
             ulong ValidTime,
             ulong LastUpdateTime,
             ulong NextUpdateTime,
             ulong UpdateTimeInterval,
-            ulong ShortestResponseTime
+            ulong ShortestResponseTime,
+            Del AccessPath
             )
         {
-            this.monitoredObjectID = MonitoredObjectID;
             this.currentValue = CurrentValue;
             this.validTime = ValidTime;
             this.lastUpdateTime = LastUpdateTime;
@@ -87,34 +86,9 @@ namespace IASS.Collections
             this.updateTimeInterval = UpdateTimeInterval;
             this.shortestResponseTime = ShortestResponseTime;
             this.monitoredConditions = new List<MonitoredCondition>();
+            this.accessPath = AccessPath;
         }
 
-        /*
-        Routine Name:
-            ID
-
-        Routine Description:
-            This function allows the caller to Get and Set values.
-            We implement it using C# feature - Properties
-
-        Arguments:
-            None.
-
-        Return Value:
-            The function returns monitor object ID.
-        */
-        public string ID
-        {
-            get
-            {
-                return monitoredObjectID;
-            }
-            set
-            {
-                monitoredObjectID = value;
-            }
-
-        }
 
         /*
         Routine Name:
@@ -312,6 +286,33 @@ namespace IASS.Collections
 
         /*
         Routine Name:
+            ShortestResponseTime
+
+        Routine Description:
+            This function allows the caller to Get and Set values.
+            We implement it using C# feature - Properties
+
+        Arguments:
+            None.
+
+        Return Value:
+            The function returns shortest response time of monitored object.
+        */
+        public Del AccessPath
+        {
+            get
+            {
+                return accessPath;
+            }
+            set
+            {
+                accessPath = value;
+            }
+
+        }
+
+        /*
+        Routine Name:
             AddMonitoredCondition
 
         Routine Description:
@@ -341,18 +342,18 @@ namespace IASS.Collections
         Return Value:
             None.
         */
-        public string AccessPath()
-        {
-            //run script/function to get value
-            //script/function will return currentValue, validTime, and lastUpdateTime 
+        //public string AccessPath()
+        //{
+        //    //run script/function to get value
+        //    //script/function will return currentValue, validTime, and lastUpdateTime 
 
-            //			currentValue = updatedValue;
-            //			validTime = validTime;
-            //			lastUpdateTime = lastUpdateTime;
-            //			nextUpdateTime = lastUpdateTime + updateTimeInterval;
+        //    //			currentValue = updatedValue;
+        //    //			validTime = validTime;
+        //    //			lastUpdateTime = lastUpdateTime;
+        //    //			nextUpdateTime = lastUpdateTime + updateTimeInterval;
 
-            return currentValue;
-        }
+        //    return currentValue;
+        //}
 
         /*
         Routine Name:
