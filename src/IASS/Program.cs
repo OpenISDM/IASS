@@ -32,7 +32,7 @@ using System.Net;
 
 namespace IASS
 {
-    public delegate void Del();
+    public delegate void Del(MonitoredObject mo);
     class Program
     {
         static void Main(string[] args)
@@ -51,20 +51,21 @@ namespace IASS
             MonitoredObject MO4 = new MonitoredObject(null, 1638777864,5663215654,3223402342,30000000,30000, handler4);
             MonitoredObject MO5 = new MonitoredObject(null, 1638777864,5663215654,3223402342,30000000,30000, handler5);
 
-
             MODictionary.Add("MO1", MO1);
             MODictionary.Add("MO2", MO2);
             MODictionary.Add("MO3", MO3);
             MODictionary.Add("MO4", MO4);
             MODictionary.Add("MO5", MO5);
 
-            foreach (var mo in MODictionary ) {
+            foreach ( var mo in MODictionary ) {
                 Console.WriteLine("Key = {0}, Value ={1}", mo.Key, mo.Value);
-                mo.Value.AccessPath.DynamicInvoke();
+                mo.Value.AccessPath.DynamicInvoke(mo.Value);
             }
+
+            Console.ReadKey();
         }
 
-        private static void GetCurrentValue1()
+        private static void GetCurrentValue1(MonitoredObject mo)
         {
             string url = "http://data.taipei.gov.tw/opendata/apply/query/NTQzRjZFREItQzRENC00NkU4LUFGMkUtMkZFRjcxRTNEMzMz?$format=json";
             WebClient client = new WebClient ();
@@ -80,12 +81,16 @@ namespace IASS
 
             //you could do a foreach or a linq here depending on what you need to do exactly with the value
             var myElement = itemProperties.FirstOrDefault(k => k.Name == "TP");
-            var myElementValue = myElement.Value;            
+            var myElementValue = myElement.Value;
+            Console.WriteLine("Get the elementvalue");
             Console.WriteLine(myElementValue);
-            Console.WriteLine();
+            mo.CurrentValue = ( string )myElementValue;
+            Console.WriteLine("Set to mo.currentValue");
+            Console.WriteLine(mo.CurrentValue);
+
         }
 
-        private static void GetCurrentValue2()
+        private static void GetCurrentValue2(MonitoredObject mo)
         {
             string url = "http://data.taipei.gov.tw/opendata/apply/query/OTgyQjVGQzgtNUU5MS00MzA1LUFGM0ItMkUwOTZBQTE4Q0Ux?$format=json";
             WebClient client = new WebClient ();
@@ -102,12 +107,14 @@ namespace IASS
             //you could do a foreach or a linq here depending on what you need to do exactly with the value
             var myElement = itemProperties.FirstOrDefault(k => k.Name == "village");
             var myElementValue = myElement.Value;
-
+            Console.WriteLine("Get the elementvalue");
             Console.WriteLine(myElementValue);
-
+            mo.CurrentValue = ( string )myElementValue;
+            Console.WriteLine("Set to mo.currentValue");
+            Console.WriteLine(mo.CurrentValue);
         }
 
-        private static void GetCurrentValue3()
+        private static void GetCurrentValue3(MonitoredObject mo)
         {
             string url = "http://m.coa.gov.tw/OpenData/DebrisAlertService/GetDebrisVillInfo.aspx";
             WebClient client = new WebClient ();
@@ -124,10 +131,14 @@ namespace IASS
             //you could do a foreach or a linq here depending on what you need to do exactly with the value
             var myElement = itemProperties.FirstOrDefault(k => k.Name == "AlertValue");
             var myElementValue = myElement.Value;
+            Console.WriteLine("Get the elementvalue");
             Console.WriteLine(myElementValue);
+            mo.CurrentValue = ( string )myElementValue;
+            Console.WriteLine("Set to mo.currentValue");
+            Console.WriteLine(mo.CurrentValue);
         }
 
-        private static void GetCurrentValue4()
+        private static void GetCurrentValue4(MonitoredObject mo)
         {
             string url = "http://opendata.epa.gov.tw/ws/Data/RainTenMin/?format=json";
             WebClient client = new WebClient ();
@@ -144,10 +155,14 @@ namespace IASS
             //you could do a foreach or a linq here depending on what you need to do exactly with the value
             var myElement = itemProperties.FirstOrDefault(k => k.Name == "TWD67Lon");
             var myElementValue = myElement.Value;
+            Console.WriteLine("Get the elementvalue");
             Console.WriteLine(myElementValue);
+            mo.CurrentValue = ( string )myElementValue;
+            Console.WriteLine("Set to mo.currentValue");
+            Console.WriteLine(mo.CurrentValue);
         }
 
-        private static void GetCurrentValue5()
+        private static void GetCurrentValue5(MonitoredObject mo)
         {
             string url = "http://data.coa.gov.tw/Service/OpenData/DataFileService.aspx?UnitId=061";
             WebClient client = new WebClient ();
@@ -164,7 +179,11 @@ namespace IASS
             //you could do a foreach or a linq here depending on what you need to do exactly with the value
             var myElement = itemProperties.FirstOrDefault(k => k.Name == "town");
             var myElementValue = myElement.Value;
+            Console.WriteLine("Get the elementvalue");
             Console.WriteLine(myElementValue);
+            mo.CurrentValue = ( string )myElementValue;
+            Console.WriteLine("Set to mo.currentValue");
+            Console.WriteLine(mo.CurrentValue);
         }
     }
 }
